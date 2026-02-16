@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>President Grant | Zambia Registration</title>
 
-  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -18,16 +17,16 @@
       --text:#eef3ff;
       --muted: rgba(238,243,255,.72);
 
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.09);
       --stroke: rgba(255,255,255,.12);
-      --stroke2: rgba(255,255,255,.18);
+      --stroke2: rgba(255,255,255,.20);
 
+      /* Zambia flag palette */
       --z-green:#198754;
       --z-red:#d72638;
       --z-black:#0b0f16;
       --z-orange:#ff7a00;
 
+      /* Accent */
       --a1:#7c3aed; /* violet */
       --a2:#06b6d4; /* cyan */
       --a3:#22c55e; /* green */
@@ -52,7 +51,7 @@
       overflow-x:hidden;
     }
 
-    /* Subtle animated dots */
+    /* animated dots */
     .bg-dots{
       position: fixed;
       inset: 0;
@@ -99,7 +98,7 @@
     }
     .brand{
       display:flex; align-items:center; gap:10px;
-      font-weight:800; letter-spacing:.2px;
+      font-weight:900; letter-spacing:.2px;
     }
     .logo{
       width:42px;height:42px;border-radius:16px;
@@ -151,22 +150,49 @@
       position: relative;
     }
 
-    /* Banner with president image in front */
+    /* BANNER with watermark president UNDER the headline */
     .heroBanner{
-      min-height: 460px;
+      min-height: 470px;
       padding: 18px;
       display:flex;
       flex-direction: column;
       justify-content: flex-end;
       gap: 10px;
+      position:relative;
+      overflow:hidden;
+
+      /* clean premium background */
       background:
-        radial-gradient(800px 360px at 70% 0%, rgba(6,182,212,.22), transparent 60%),
-        radial-gradient(800px 420px at 20% 40%, rgba(124,58,237,.22), transparent 60%),
-        linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.72) 70%),
+        radial-gradient(900px 420px at 70% 0%, rgba(6,182,212,.22), transparent 60%),
+        radial-gradient(900px 520px at 20% 40%, rgba(124,58,237,.22), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.72) 72%);
+    }
+
+    /* President photo as watermark */
+    .heroBanner::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(700px 400px at 55% 25%, rgba(245,158,11,.12), transparent 60%),
         url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg/1600px-President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg");
       background-size: cover;
       background-position: center 18%;
+      opacity: .18;              /* شفافية الصورة */
+      filter: contrast(1.12) saturate(1.05);
+      z-index: 0;
     }
+
+    /* Slight dark overlay to keep text super readable */
+    .heroBanner::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.78) 75%);
+      z-index: 1;
+    }
+
+    .heroBanner *{ position:relative; z-index: 2; }
 
     .heroBadges{
       display:flex; flex-wrap:wrap; gap:10px;
@@ -193,13 +219,13 @@
       font-size: 42px;
       line-height: 1.08;
       font-weight: 900;
-      max-width: 24ch;
-      text-shadow: 0 18px 60px rgba(0,0,0,.6);
+      max-width: 26ch;
+      text-shadow: 0 18px 60px rgba(0,0,0,.65);
     }
     .subhead{
       margin: 6px 0 0;
-      color: rgba(238,243,255,.80);
-      font-weight: 650;
+      color: rgba(238,243,255,.82);
+      font-weight: 700;
       max-width: 72ch;
     }
 
@@ -238,7 +264,7 @@
     .formTitle p{
       margin: 6px 0 0;
       color: var(--muted);
-      font-weight: 650;
+      font-weight: 700;
     }
 
     .glass{
@@ -261,7 +287,7 @@
     }
     input::placeholder{ color: rgba(238,243,255,.45); }
     input:focus{
-      border-color: rgba(6,182,212,.55);
+      border-color: rgba(6,182,212,.60);
       box-shadow: 0 0 0 4px rgba(6,182,212,.16);
     }
 
@@ -272,7 +298,7 @@
       border: none;
       border-radius: 16px;
       padding: 13px 14px;
-      font-weight: 1000;
+      font-weight: 900;
       font-size: 16px;
       cursor:pointer;
       color: #071016;
@@ -324,8 +350,8 @@
       display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
       margin-bottom: 12px;
     }
-    .section h3{ margin:0; font-size: 22px; font-weight: 1000; }
-    .section p{ margin: 6px 0 0; color: var(--muted); font-weight: 650; }
+    .section h3{ margin:0; font-size: 22px; font-weight: 900; }
+    .section p{ margin: 6px 0 0; color: var(--muted); font-weight: 700; }
 
     .gallery{
       display:grid;
@@ -374,32 +400,12 @@
       box-shadow: 0 0 0 6px rgba(124,58,237,.12);
     }
 
-    /* Privacy + Contact */
-    .legalGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .legalGrid h4{ margin:0 0 6px 0; font-size: 16px; font-weight: 1000; }
-    .legalGrid p{ margin:0; color: rgba(238,243,255,.78); font-weight: 650; }
-    .legalGrid .box{
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.05);
-      border-radius: 18px;
-      padding: 14px;
-    }
-
     /* Footer */
     footer{
       padding: 26px 18px 90px;
       text-align:center;
       color: rgba(238,243,255,.55);
       font-size: 12px;
-    }
-    footer a{
-      text-decoration: underline;
-      opacity: .85;
-      margin: 0 6px;
     }
 
     /* Mobile sticky CTA */
@@ -428,7 +434,7 @@
       border:none;
       border-radius: 16px;
       padding: 12px 14px;
-      font-weight: 1000;
+      font-weight: 900;
       cursor:pointer;
       color:#071016;
       background: linear-gradient(90deg, rgba(245,158,11,1), rgba(34,197,94,1));
@@ -442,7 +448,6 @@
       .headline{ font-size: 34px; }
       .gcard{ grid-column: span 6; }
       .stickyCTA{ display:block; }
-      .legalGrid{ grid-template-columns: 1fr; }
     }
     @media (max-width: 560px){
       .grid2{ grid-template-columns: 1fr; }
@@ -464,7 +469,7 @@
   <div class="bg-dots"></div>
 
   <div class="wrap">
-    <!-- Zambia flag + brand -->
+    <!-- Zambia Flag + Brand -->
     <div class="flagbar reveal">
       <div class="flagstripe" aria-label="Zambia flag colors">
         <span class="g"></span><span class="r"></span><span class="b"></span><span class="o"></span>
@@ -486,7 +491,7 @@
 
     <!-- HERO -->
     <div class="hero">
-      <!-- Banner with president image -->
+      <!-- Banner with watermark president under headline -->
       <div class="panel heroBanner reveal delay1">
         <div class="heroBadges">
           <div class="heroBadge"><span class="spark"></span> Fast registration</div>
@@ -581,42 +586,10 @@
       </div>
     </div>
 
-    <!-- Privacy + Contact (for trust / ads) -->
-    <div class="panel section" id="legal">
-      <div class="sectionHead">
-        <div>
-          <h3>Privacy & Contact</h3>
-          <p>Basic information to improve trust and ad approval.</p>
-        </div>
-        <div class="pill">Info</div>
-      </div>
-
-      <div class="legalGrid">
-        <div class="box" id="privacy">
-          <h4>Privacy Policy</h4>
-          <p>
-            We collect the information you provide (full name and mobile number) to process your registration and contact you
-            about next steps. We do not sell your personal data. You can request removal by contacting us.
-          </p>
-        </div>
-
-        <div class="box" id="contact">
-          <h4>Contact</h4>
-          <p><b>Email:</b> support@example.com</p>
-          <p style="margin-top:6px;"><b>WhatsApp:</b> +260XXXXXXXXX</p>
-          <p style="margin-top:6px;"><b>Hours:</b> Mon–Sat, 09:00–18:00</p>
-        </div>
-      </div>
-    </div>
-
     <footer>
       © <span id="year"></span> President Grant — Registration Page.
       <br/>
-      <a href="#privacy">Privacy Policy</a> • <a href="#contact">Contact</a> • <a href="#gallery">Gallery</a>
-      <br/>
-      <span style="opacity:.55;">
-        Independent registration page (not an official government website).
-      </span>
+      <span style="opacity:.55;">Independent registration page (not an official government website).</span>
     </footer>
   </div>
 
@@ -636,13 +609,13 @@
 
   <script>
     // ====== SETTINGS ======
-    // Countdown end time (Lusaka typically UTC+2). Change it anytime.
+    // Change countdown end time here (Lusaka typically UTC+2)
     const END_AT = "2026-03-01T23:59:00+02:00";
 
-    // Your CPA link (redirect after form submit)
+    // CPA redirect URL
     const CPA_URL = "https://iconics.adsleads1.store/?utm_medium=45cb5b04ee2dd3d524876ef99d99f52ba4436745&utm_campaign=menhaza";
 
-    // Append captured fields to CPA URL (only if your network accepts these params)
+    // Append captured fields as params (only if your network accepts)
     const APPEND_PARAMS_TO_CPA = true;
 
     // ====== DATE UI ======
