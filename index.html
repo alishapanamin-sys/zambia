@@ -150,9 +150,9 @@
       position: relative;
     }
 
-    /* BANNER with watermark president UNDER the headline */
+    /* BANNER with president watermark UNDER headline */
     .heroBanner{
-      min-height: 470px;
+      min-height: 490px;
       padding: 18px;
       display:flex;
       flex-direction: column;
@@ -161,38 +161,72 @@
       position:relative;
       overflow:hidden;
 
-      /* clean premium background */
       background:
         radial-gradient(900px 420px at 70% 0%, rgba(6,182,212,.22), transparent 60%),
         radial-gradient(900px 520px at 20% 40%, rgba(124,58,237,.22), transparent 60%),
         linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.72) 72%);
     }
 
-    /* President photo as watermark */
+    /* President photo as watermark (transparent under headline) */
     .heroBanner::before{
       content:"";
       position:absolute;
       inset:0;
       background:
-        radial-gradient(700px 400px at 55% 25%, rgba(245,158,11,.12), transparent 60%),
+        radial-gradient(700px 400px at 55% 22%, rgba(245,158,11,.12), transparent 60%),
         url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg/1600px-President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg");
       background-size: cover;
       background-position: center 18%;
-      opacity: .18;              /* شفافية الصورة */
+      opacity: .17;
       filter: contrast(1.12) saturate(1.05);
       z-index: 0;
     }
 
-    /* Slight dark overlay to keep text super readable */
+    /* Dark overlay to keep text readable */
     .heroBanner::after{
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.78) 75%);
+      background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.82) 78%);
       z-index: 1;
     }
 
     .heroBanner *{ position:relative; z-index: 2; }
+
+    /* Visible president card (NOT transparent) inside banner */
+    .presCard{
+      position:absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 3;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.30);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 70px rgba(0,0,0,.35);
+      max-width: 340px;
+    }
+    .presPhoto{
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.18);
+      flex: 0 0 auto;
+    }
+    .presPhoto img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.03) contrast(1.05);
+    }
+    .presInfo b{ display:block; font-size: 13px; font-weight: 900; }
+    .presInfo span{ display:block; font-size: 12px; color: rgba(238,243,255,.72); font-weight: 700; }
 
     .heroBadges{
       display:flex; flex-wrap:wrap; gap:10px;
@@ -219,14 +253,14 @@
       font-size: 42px;
       line-height: 1.08;
       font-weight: 900;
-      max-width: 26ch;
+      max-width: 28ch;
       text-shadow: 0 18px 60px rgba(0,0,0,.65);
     }
     .subhead{
       margin: 6px 0 0;
       color: rgba(238,243,255,.82);
       font-weight: 700;
-      max-width: 72ch;
+      max-width: 74ch;
     }
 
     /* Countdown */
@@ -375,10 +409,10 @@
     }
     .gcard img{
       width:100%;
-      height: 160px;
+      height: 170px;
       object-fit: cover;
       display:block;
-      filter: saturate(1.05) contrast(1.03);
+      filter: saturate(1.06) contrast(1.03);
     }
     .gmeta{
       padding: 10px 12px 12px;
@@ -393,6 +427,7 @@
       border: 1px solid var(--stroke);
       background: rgba(255,255,255,.03);
       color: rgba(238,243,255,.82);
+      font-weight: 800;
     }
     .miniDot{
       width:8px;height:8px;border-radius:50%;
@@ -448,6 +483,7 @@
       .headline{ font-size: 34px; }
       .gcard{ grid-column: span 6; }
       .stickyCTA{ display:block; }
+      .presCard{ position: static; margin-bottom: 10px; max-width: 100%; }
     }
     @media (max-width: 560px){
       .grid2{ grid-template-columns: 1fr; }
@@ -491,8 +527,19 @@
 
     <!-- HERO -->
     <div class="hero">
-      <!-- Banner with watermark president under headline -->
+      <!-- Banner -->
       <div class="panel heroBanner reveal delay1">
+        <!-- Visible president card -->
+        <div class="presCard" aria-label="President of Zambia">
+          <div class="presPhoto">
+            <img alt="President of Zambia" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg/512px-President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg">
+          </div>
+          <div class="presInfo">
+            <b>President of Zambia</b>
+            <span>Hakainde Hichilema</span>
+          </div>
+        </div>
+
         <div class="heroBadges">
           <div class="heroBadge"><span class="spark"></span> Fast registration</div>
           <div class="heroBadge">Secure form</div>
@@ -558,31 +605,77 @@
       </div>
     </div>
 
-    <!-- Gallery -->
+    <!-- Scholarships Gallery (REAL scholarship-like images) -->
     <div class="panel section reveal delay3" id="gallery">
       <div class="sectionHead">
         <div>
-          <h3>Program Opportunities</h3>
-          <p>Illustrative images of scholarships, training, and education support.</p>
+          <h3>Scholarship Examples</h3>
+          <p>Illustrative images related to scholarships, admission, and study support.</p>
         </div>
         <div class="pill">Updated: <span id="today"></span></div>
       </div>
 
       <div class="gallery">
-        <div class="gcard"><img alt="Scholarship" src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Tuition Support</span><span class="tag">2026</span></div></div>
-        <div class="gcard"><img alt="Education" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Study Programs</span><span class="tag">Fast</span></div></div>
-        <div class="gcard"><img alt="Students" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Multiple Fields</span><span class="tag">Limited</span></div></div>
-        <div class="gcard"><img alt="Support" src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Merit-Based</span><span class="tag">Secure</span></div></div>
+        <!-- Scholarship / grants focused images -->
+        <div class="gcard">
+          <img alt="Scholarship Application" src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1400&q=80">
+          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Application</span><span class="tag">Step-by-step</span></div>
+        </div>
 
-        <div class="gcard"><img alt="Library" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Research</span><span class="tag">Support</span></div></div>
-        <div class="gcard"><img alt="Graduation" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Certificates</span><span class="tag">Career</span></div></div>
-        <div class="gcard"><img alt="Learning" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Training</span><span class="tag">Skills</span></div></div>
-        <div class="gcard"><img alt="International" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Exposure</span><span class="tag">Global</span></div></div>
+        <div class="gcard">
+          <img alt="Acceptance Letter" src="https://images.unsplash.com/photo-1521790361543-f645cf042ec4?auto=format&fit=crop&w=1400&q=80">
+          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Admission</span><span class="tag">Letter</span></div>
+        </div>
 
-        <div class="gcard"><img alt="Campus" src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Campus Life</span><span class="tag">Community</span></div></div>
-        <div class="gcard"><img alt="Books" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Resources</span><span class="tag">Access</span></div></div>
-        <div class="gcard"><img alt="Laptop" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Online Options</span><span class="tag">Flexible</span></div></div>
-        <div class="gcard"><img alt="Team" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Mentorship</span><span class="tag">Guidance</span></div></div>
+        <div class="gcard">
+          <img alt="Graduation" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1400&q=80">
+          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Graduation</span><span class="tag">Success</span></div>
+        </div>
+
+        <div class="gcard">
+          <img alt="Scholarship Support" src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1400&q=80">
+          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Support</span><span class="tag">Merit</span></div>
+        </div>
+
+        <div class="gcard">
+          <img alt="Books and Study" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1400&q=80">
+          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Study</span><span class="tag">Books</span></div>
+        </div>
+
+        <div class="gcard">
+          <img alt="University Students" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=80">
+          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Students</span><span class="tag">Campus</span></div>
+        </div>
+
+        <div class="gcard">
+          <img alt="Tuition Funding" src="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1400&q=80">
+          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Funding</span><span class="tag">Tuition</span></div>
+        </div>
+
+        <div class="gcard">
+          <img alt="Online Study" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=80">
+          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Online</span><span class="tag">Flexible</span></div>
+        </div>
+
+        <div class="gcard">
+          <img alt="Scholarship Interview" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80">
+          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Interview</span><span class="tag">Guidance</span></div>
+        </div>
+
+        <div class="gcard">
+          <img alt="Exam Preparation" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1400&q=80">
+          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Preparation</span><span class="tag">Skills</span></div>
+        </div>
+
+        <div class="gcard">
+          <img alt="University Building" src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1400&q=80">
+          <div class="gmeta"><span class="tag"><span class="miniDot"></span> University</span><span class="tag">Access</span></div>
+        </div>
+
+        <div class="gcard">
+          <img alt="Scholarship Opportunity" src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1400&q=80">
+          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Opportunity</span><span class="tag">2026</span></div>
+        </div>
       </div>
     </div>
 
