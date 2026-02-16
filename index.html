@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>President Grant | Zambia Registration</title>
 
-  <!-- Fonts -->
+  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -14,12 +14,19 @@
     :root{
       --bg0:#050814;
       --bg1:#070c1b;
+
+      --text:#eef3ff;
+      --muted: rgba(238,243,255,.72);
+
       --card: rgba(255,255,255,.06);
       --card2: rgba(255,255,255,.09);
       --stroke: rgba(255,255,255,.12);
       --stroke2: rgba(255,255,255,.18);
-      --text:#eef3ff;
-      --muted: rgba(238,243,255,.72);
+
+      --z-green:#198754;
+      --z-red:#d72638;
+      --z-black:#0b0f16;
+      --z-orange:#ff7a00;
 
       --a1:#7c3aed; /* violet */
       --a2:#06b6d4; /* cyan */
@@ -45,18 +52,15 @@
       overflow-x:hidden;
     }
 
-    a{ color: inherit; text-decoration:none; }
-    .wrap{ max-width: 1180px; margin: 0 auto; padding: 18px; }
-
-    /* Subtle animated background dots */
+    /* Subtle animated dots */
     .bg-dots{
       position: fixed;
       inset: 0;
       pointer-events:none;
-      opacity:.35;
+      opacity:.30;
       background-image: radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px);
       background-size: 26px 26px;
-      mask-image: radial-gradient(60% 50% at 50% 20%, black, transparent 75%);
+      mask-image: radial-gradient(60% 50% at 50% 15%, black, transparent 75%);
       animation: drift 14s linear infinite;
     }
     @keyframes drift{
@@ -64,23 +68,54 @@
       100%{ transform: translateY(26px); }
     }
 
-    /* Top bar */
-    .topbar{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px; padding: 10px 0 6px;
+    .wrap{ max-width: 1180px; margin: 0 auto; padding: 18px; }
+
+    /* Zambia flag bar */
+    .flagbar{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: 0 18px 70px rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+    }
+    .flagstripe{
+      height: 12px;
+      display:flex;
+      width:100%;
+    }
+    .flagstripe span{ flex:1 }
+    .flagstripe .g{ background: var(--z-green); }
+    .flagstripe .r{ background: var(--z-red); }
+    .flagstripe .b{ background: var(--z-black); }
+    .flagstripe .o{ background: var(--z-orange); }
+
+    .flagcontent{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 12px 14px;
     }
     .brand{
       display:flex; align-items:center; gap:10px;
       font-weight:800; letter-spacing:.2px;
     }
     .logo{
-      width:40px;height:40px;border-radius:14px;
+      width:42px;height:42px;border-radius:16px;
       display:grid;place-items:center;
-      background: linear-gradient(135deg, rgba(124,58,237,.25), rgba(6,182,212,.18));
-      border:1px solid var(--stroke);
-      box-shadow: 0 10px 40px rgba(124,58,237,.18);
+      background: linear-gradient(135deg, rgba(6,182,212,.22), rgba(124,58,237,.20));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow: 0 10px 40px rgba(6,182,212,.14);
     }
-    .brand small{ display:block; color: var(--muted); font-weight:700; margin-top:1px; }
+    .brand small{
+      display:block;
+      color: var(--muted);
+      font-weight:700;
+      margin-top:2px;
+      font-size: 12px;
+    }
+
     .pill{
       display:flex; align-items:center; gap:8px;
       padding: 8px 12px;
@@ -89,7 +124,7 @@
       background: rgba(255,255,255,.05);
       backdrop-filter: blur(10px);
       font-size: 12px;
-      color: rgba(238,243,255,.78);
+      color: rgba(238,243,255,.82);
       white-space: nowrap;
     }
     .dot{
@@ -98,12 +133,12 @@
       box-shadow: 0 0 0 6px rgba(34,197,94,.18);
     }
 
-    /* Hero layout */
+    /* Layout */
     .hero{
       display:grid;
       grid-template-columns: 1.05fr .95fr;
       gap: 18px;
-      margin-top: 10px;
+      margin-top: 14px;
       align-items: stretch;
     }
 
@@ -116,24 +151,26 @@
       position: relative;
     }
 
-    /* HERO IMAGE: President appears FIRST visually */
-    .heroImage{
-      min-height: 430px;
+    /* Banner with president image in front */
+    .heroBanner{
+      min-height: 460px;
+      padding: 18px;
       display:flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 18px;
+      gap: 10px;
       background:
-        linear-gradient(180deg, rgba(0,0,0,.06) 10%, rgba(0,0,0,.78) 78%),
-        radial-gradient(700px 340px at 70% 10%, rgba(124,58,237,.35), transparent 60%),
+        radial-gradient(800px 360px at 70% 0%, rgba(6,182,212,.22), transparent 60%),
+        radial-gradient(800px 420px at 20% 40%, rgba(124,58,237,.22), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.72) 70%),
         url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg/1600px-President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg");
       background-size: cover;
       background-position: center 18%;
     }
 
-    .heroBadgeRow{
+    .heroBadges{
       display:flex; flex-wrap:wrap; gap:10px;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
     .heroBadge{
       display:inline-flex; align-items:center; gap:8px;
@@ -143,36 +180,35 @@
       background: rgba(0,0,0,.28);
       backdrop-filter: blur(10px);
       font-size: 12px;
-      color: rgba(238,243,255,.85);
+      color: rgba(238,243,255,.88);
     }
     .spark{
-      width: 18px; height: 18px; border-radius: 6px;
-      background: linear-gradient(135deg, rgba(245,158,11,.9), rgba(34,197,94,.8));
+      width: 18px; height: 18px; border-radius: 7px;
+      background: linear-gradient(135deg, rgba(245,158,11,.95), rgba(34,197,94,.85));
       box-shadow: 0 12px 30px rgba(245,158,11,.18);
     }
 
     .headline{
       margin:0;
-      font-size: 40px;
-      line-height: 1.1;
-      font-weight: 800;
-      max-width: 22ch;
+      font-size: 42px;
+      line-height: 1.08;
+      font-weight: 900;
+      max-width: 24ch;
       text-shadow: 0 18px 60px rgba(0,0,0,.6);
     }
     .subhead{
-      margin: 10px 0 0;
+      margin: 6px 0 0;
       color: rgba(238,243,255,.80);
-      font-weight: 600;
-      max-width: 75ch;
+      font-weight: 650;
+      max-width: 72ch;
     }
 
     /* Countdown */
     .countdown{
       display:flex; gap:10px; flex-wrap:wrap;
-      margin-top: 14px;
+      margin-top: 12px;
     }
     .timebox{
-      flex: 0 0 auto;
       min-width: 96px;
       padding: 10px 12px;
       border-radius: 16px;
@@ -181,7 +217,7 @@
       backdrop-filter: blur(12px);
       text-align:center;
     }
-    .num{ font-size: 26px; font-weight: 800; line-height: 1; }
+    .num{ font-size: 26px; font-weight: 900; line-height: 1; }
     .lbl{ font-size: 12px; color: rgba(238,243,255,.75); margin-top: 4px; }
 
     /* Form */
@@ -197,12 +233,12 @@
     .formTitle h2{
       margin:0;
       font-size: 22px;
-      font-weight: 800;
+      font-weight: 900;
     }
     .formTitle p{
       margin: 6px 0 0;
       color: var(--muted);
-      font-weight: 600;
+      font-weight: 650;
     }
 
     .glass{
@@ -213,7 +249,7 @@
     }
 
     .field{ display:flex; flex-direction:column; gap: 7px; }
-    label{ font-weight: 800; font-size: 13px; letter-spacing:.2px; }
+    label{ font-weight: 900; font-size: 13px; letter-spacing:.2px; }
     input{
       padding: 13px 12px;
       border-radius: 14px;
@@ -231,17 +267,12 @@
 
     .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-    .cta{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-      margin-top: 4px;
-    }
-
     .btn{
       width:100%;
       border: none;
       border-radius: 16px;
       padding: 13px 14px;
-      font-weight: 900;
+      font-weight: 1000;
       font-size: 16px;
       cursor:pointer;
       color: #071016;
@@ -251,6 +282,24 @@
     }
     .btn:hover{ filter: brightness(1.05); }
     .btn:active{ transform: translateY(1px); }
+
+    .status{
+      display:none;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      font-weight: 800;
+      margin-top: 10px;
+    }
+    .status.ok{ border-color: rgba(34,197,94,.35); }
+    .status.err{ border-color: rgba(255,77,77,.40); color: #ffd1d1; }
+
+    .fineprint{
+      font-size: 12px;
+      color: rgba(238,243,255,.62);
+      line-height: 1.5;
+    }
 
     .trustRow{
       display:flex; gap:10px; flex-wrap:wrap;
@@ -266,23 +315,6 @@
     .trust b{ display:block; font-size: 13px; }
     .trust span{ display:block; margin-top:2px; font-size: 12px; color: var(--muted); }
 
-    .status{
-      display:none;
-      padding: 10px 12px;
-      border-radius: 16px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.05);
-      font-weight: 700;
-    }
-    .status.ok{ border-color: rgba(34,197,94,.35); }
-    .status.err{ border-color: rgba(255,77,77,.40); color: #ffd1d1; }
-
-    .fineprint{
-      font-size: 12px;
-      color: rgba(238,243,255,.60);
-      line-height: 1.5;
-    }
-
     /* Gallery */
     .section{
       margin-top: 18px;
@@ -292,15 +324,14 @@
       display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
       margin-bottom: 12px;
     }
-    .section h3{ margin:0; font-size: 22px; font-weight: 900; }
-    .section p{ margin: 6px 0 0; color: var(--muted); font-weight: 600; }
+    .section h3{ margin:0; font-size: 22px; font-weight: 1000; }
+    .section p{ margin: 6px 0 0; color: var(--muted); font-weight: 650; }
 
     .gallery{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 10px;
     }
-
     .gcard{
       grid-column: span 3;
       border-radius: 18px;
@@ -308,7 +339,7 @@
       border: 1px solid var(--stroke);
       background: rgba(255,255,255,.03);
       position: relative;
-      min-height: 140px;
+      min-height: 150px;
       transform: translateY(0);
       transition: transform .22s ease, border-color .22s ease;
     }
@@ -318,7 +349,7 @@
     }
     .gcard img{
       width:100%;
-      height: 150px;
+      height: 160px;
       object-fit: cover;
       display:block;
       filter: saturate(1.05) contrast(1.03);
@@ -326,6 +357,7 @@
     .gmeta{
       padding: 10px 12px 12px;
       display:flex; align-items:center; justify-content:space-between; gap:10px;
+      flex-wrap:wrap;
     }
     .tag{
       display:inline-flex; align-items:center; gap:8px;
@@ -334,12 +366,27 @@
       border-radius: 999px;
       border: 1px solid var(--stroke);
       background: rgba(255,255,255,.03);
-      color: rgba(238,243,255,.80);
+      color: rgba(238,243,255,.82);
     }
     .miniDot{
       width:8px;height:8px;border-radius:50%;
       background: linear-gradient(135deg, var(--a2), var(--a1));
       box-shadow: 0 0 0 6px rgba(124,58,237,.12);
+    }
+
+    /* Privacy + Contact */
+    .legalGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .legalGrid h4{ margin:0 0 6px 0; font-size: 16px; font-weight: 1000; }
+    .legalGrid p{ margin:0; color: rgba(238,243,255,.78); font-weight: 650; }
+    .legalGrid .box{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      border-radius: 18px;
+      padding: 14px;
     }
 
     /* Footer */
@@ -348,6 +395,11 @@
       text-align:center;
       color: rgba(238,243,255,.55);
       font-size: 12px;
+    }
+    footer a{
+      text-decoration: underline;
+      opacity: .85;
+      margin: 0 6px;
     }
 
     /* Mobile sticky CTA */
@@ -376,7 +428,7 @@
       border:none;
       border-radius: 16px;
       padding: 12px 14px;
-      font-weight: 900;
+      font-weight: 1000;
       cursor:pointer;
       color:#071016;
       background: linear-gradient(90deg, rgba(245,158,11,1), rgba(34,197,94,1));
@@ -390,6 +442,7 @@
       .headline{ font-size: 34px; }
       .gcard{ grid-column: span 6; }
       .stickyCTA{ display:block; }
+      .legalGrid{ grid-template-columns: 1fr; }
     }
     @media (max-width: 560px){
       .grid2{ grid-template-columns: 1fr; }
@@ -398,14 +451,12 @@
       .gcard{ grid-column: span 12; }
     }
 
-    /* Simple entrance animation */
+    /* Entrance animation */
     .reveal{ opacity:0; transform: translateY(10px); animation: in .7s ease forwards; }
     .reveal.delay1{ animation-delay: .08s; }
     .reveal.delay2{ animation-delay: .16s; }
     .reveal.delay3{ animation-delay: .24s; }
-    @keyframes in{
-      to{ opacity:1; transform: translateY(0); }
-    }
+    @keyframes in{ to{ opacity:1; transform: translateY(0); } }
   </style>
 </head>
 
@@ -413,34 +464,39 @@
   <div class="bg-dots"></div>
 
   <div class="wrap">
-    <!-- Top Bar -->
-    <div class="topbar reveal">
-      <div class="brand">
-        <div class="logo">🎓</div>
-        <div>
-          <div style="font-size:16px;">President Grant</div>
-          <small>Zambia Registration Portal</small>
-        </div>
+    <!-- Zambia flag + brand -->
+    <div class="flagbar reveal">
+      <div class="flagstripe" aria-label="Zambia flag colors">
+        <span class="g"></span><span class="r"></span><span class="b"></span><span class="o"></span>
       </div>
-      <div class="pill" id="urgencyText">
-        <span class="dot"></span>
-        Limited-time registration
+      <div class="flagcontent">
+        <div class="brand">
+          <div class="logo">🇿🇲</div>
+          <div>
+            <div style="font-size:16px;">President Grant</div>
+            <small>Zambia Registration Portal</small>
+          </div>
+        </div>
+        <div class="pill" id="urgencyText">
+          <span class="dot"></span>
+          Limited-time registration
+        </div>
       </div>
     </div>
 
     <!-- HERO -->
     <div class="hero">
-      <!-- President image FIRST -->
-      <div class="panel heroImage reveal delay1" aria-label="President image and headline">
-        <div class="heroBadgeRow">
-          <div class="heroBadge"><span class="spark"></span> Fast registration (under 30 sec)</div>
-          <div class="heroBadge">Secure & private</div>
-          <div class="heroBadge">Nationwide eligibility</div>
+      <!-- Banner with president image -->
+      <div class="panel heroBanner reveal delay1">
+        <div class="heroBadges">
+          <div class="heroBadge"><span class="spark"></span> Fast registration</div>
+          <div class="heroBadge">Secure form</div>
+          <div class="heroBadge">Limited slots</div>
         </div>
 
         <h1 class="headline">Apply now for the President Grant (Zambia)</h1>
         <p class="subhead">
-          Complete the form to continue. A limited number of registrations are accepted during this period.
+          Fill in your details to continue to the next step. Registration is open for a limited time.
         </p>
 
         <div class="countdown" aria-label="countdown timer">
@@ -449,23 +505,19 @@
           <div class="timebox"><div class="num" id="m">00</div><div class="lbl">Minutes</div></div>
           <div class="timebox"><div class="num" id="s">00</div><div class="lbl">Seconds</div></div>
         </div>
-
-        <div style="margin-top:10px" class="fineprint">
-          Disclaimer: This page is not an official government website. It is a promotional registration page.
-        </div>
       </div>
 
-      <!-- Form panel -->
+      <!-- Form -->
       <div class="panel reveal delay2">
         <div class="formWrap">
           <div class="formTitle">
             <div>
               <h2>Registration Form</h2>
-              <p>Enter your details to proceed to the next step.</p>
+              <p>Enter your full name and mobile number.</p>
             </div>
             <div class="pill" style="gap:6px;">
               <span style="width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--a4),var(--a2));box-shadow:0 0 0 6px rgba(6,182,212,.12)"></span>
-              Verified step
+              Step 1/1
             </div>
           </div>
 
@@ -482,42 +534,27 @@
             </div>
 
             <div style="height:10px"></div>
+            <button class="btn" type="submit">Continue</button>
 
-            <button class="btn" type="submit">Continue to Next Step</button>
-
-            <div class="status ok" id="okMsg" style="margin-top:10px;">Success! Redirecting…</div>
-            <div class="status err" id="errMsg" style="margin-top:10px;">Please check your details and try again.</div>
+            <div class="status ok" id="okMsg">Success! Redirecting…</div>
+            <div class="status err" id="errMsg">Please check your details and try again.</div>
 
             <div style="margin-top:10px" class="fineprint">
-              By continuing, you agree to be contacted via phone/WhatsApp regarding the registration process.
-              <br/>Tip: Zambia country code is <b>+260</b>.
+              Tip: Zambia country code is <b>+260</b>. By continuing, you agree to be contacted about the registration.
             </div>
           </form>
 
           <div class="trustRow">
-            <div class="trust">
-              <b>Instant access</b>
-              <span>Go to the next step immediately after submitting.</span>
-            </div>
-            <div class="trust">
-              <b>Mobile-friendly</b>
-              <span>Optimized for all phones and browsers.</span>
-            </div>
-            <div class="trust">
-              <b>Clear process</b>
-              <span>Simple form, fast completion.</span>
-            </div>
-          </div>
-
-          <div class="fineprint">
-            Image used in header is from Wikimedia Commons (attribution may be required depending on your use).
+            <div class="trust"><b>Instant next step</b><span>Redirects automatically after submitting.</span></div>
+            <div class="trust"><b>Mobile optimized</b><span>Fast and clean on all devices.</span></div>
+            <div class="trust"><b>Simple & clear</b><span>One-step registration form.</span></div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Gallery -->
-    <div class="panel section reveal delay3">
+    <div class="panel section reveal delay3" id="gallery">
       <div class="sectionHead">
         <div>
           <h3>Program Opportunities</h3>
@@ -527,11 +564,10 @@
       </div>
 
       <div class="gallery">
-        <!-- 12 images (replace with your own if you want) -->
-        <div class="gcard"><img alt="Scholarship" src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Tuition Support</span><span class="tag">Top picks</span></div></div>
-        <div class="gcard"><img alt="Education" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Study Programs</span><span class="tag">2026</span></div></div>
-        <div class="gcard"><img alt="Students" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Multiple Fields</span><span class="tag">Fast</span></div></div>
-        <div class="gcard"><img alt="Support" src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Merit-Based</span><span class="tag">Limited</span></div></div>
+        <div class="gcard"><img alt="Scholarship" src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Tuition Support</span><span class="tag">2026</span></div></div>
+        <div class="gcard"><img alt="Education" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Study Programs</span><span class="tag">Fast</span></div></div>
+        <div class="gcard"><img alt="Students" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Multiple Fields</span><span class="tag">Limited</span></div></div>
+        <div class="gcard"><img alt="Support" src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Merit-Based</span><span class="tag">Secure</span></div></div>
 
         <div class="gcard"><img alt="Library" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Research</span><span class="tag">Support</span></div></div>
         <div class="gcard"><img alt="Graduation" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Certificates</span><span class="tag">Career</span></div></div>
@@ -545,9 +581,42 @@
       </div>
     </div>
 
+    <!-- Privacy + Contact (for trust / ads) -->
+    <div class="panel section" id="legal">
+      <div class="sectionHead">
+        <div>
+          <h3>Privacy & Contact</h3>
+          <p>Basic information to improve trust and ad approval.</p>
+        </div>
+        <div class="pill">Info</div>
+      </div>
+
+      <div class="legalGrid">
+        <div class="box" id="privacy">
+          <h4>Privacy Policy</h4>
+          <p>
+            We collect the information you provide (full name and mobile number) to process your registration and contact you
+            about next steps. We do not sell your personal data. You can request removal by contacting us.
+          </p>
+        </div>
+
+        <div class="box" id="contact">
+          <h4>Contact</h4>
+          <p><b>Email:</b> support@example.com</p>
+          <p style="margin-top:6px;"><b>WhatsApp:</b> +260XXXXXXXXX</p>
+          <p style="margin-top:6px;"><b>Hours:</b> Mon–Sat, 09:00–18:00</p>
+        </div>
+      </div>
+    </div>
+
     <footer>
-      © <span id="year"></span> President Grant — Promotional Registration Page.
-      <br/>Not affiliated with a government entity. Add Privacy Policy / Contact for higher trust & ad approval.
+      © <span id="year"></span> President Grant — Registration Page.
+      <br/>
+      <a href="#privacy">Privacy Policy</a> • <a href="#contact">Contact</a> • <a href="#gallery">Gallery</a>
+      <br/>
+      <span style="opacity:.55;">
+        Independent registration page (not an official government website).
+      </span>
     </footer>
   </div>
 
@@ -558,7 +627,8 @@
         <b>President Grant Registration</b>
         <span>Submit your details to continue</span>
       </div>
-      <button class="stickyBtn" type="button" onclick="document.getElementById('leadForm').scrollIntoView({behavior:'smooth',block:'center'})">
+      <button class="stickyBtn" type="button"
+        onclick="document.getElementById('leadForm').scrollIntoView({behavior:'smooth',block:'center'})">
         Register Now
       </button>
     </div>
@@ -566,7 +636,7 @@
 
   <script>
     // ====== SETTINGS ======
-    // Change the countdown end time here (Lusaka typically UTC+2).
+    // Countdown end time (Lusaka typically UTC+2). Change it anytime.
     const END_AT = "2026-03-01T23:59:00+02:00";
 
     // Your CPA link (redirect after form submit)
@@ -577,7 +647,8 @@
 
     // ====== DATE UI ======
     const today = new Date();
-    document.getElementById("today").textContent = today.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"2-digit"});
+    const todayEl = document.getElementById("today");
+    if (todayEl) todayEl.textContent = today.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"2-digit"});
     document.getElementById("year").textContent = today.getFullYear();
 
     // ====== COUNTDOWN ======
@@ -603,7 +674,8 @@
       el("s").textContent = pad(s);
 
       if (end - now <= 0) {
-        el("urgencyText").innerHTML = '<span class="dot" style="background:var(--danger); box-shadow:0 0 0 6px rgba(255,77,77,.14)"></span> Registration closed';
+        document.getElementById("urgencyText").innerHTML =
+          '<span class="dot" style="background:var(--danger); box-shadow:0 0 0 6px rgba(255,77,77,.14)"></span> Registration closed';
       }
     }
     tick();
