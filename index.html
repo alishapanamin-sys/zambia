@@ -18,7 +18,6 @@
       --muted: rgba(238,243,255,.72);
 
       --stroke: rgba(255,255,255,.12);
-      --stroke2: rgba(255,255,255,.20);
 
       /* Zambia flag palette */
       --z-green:#198754;
@@ -51,7 +50,6 @@
       overflow-x:hidden;
     }
 
-    /* animated dots */
     .bg-dots{
       position: fixed;
       inset: 0;
@@ -78,11 +76,7 @@
       box-shadow: 0 18px 70px rgba(0,0,0,.35);
       backdrop-filter: blur(10px);
     }
-    .flagstripe{
-      height: 12px;
-      display:flex;
-      width:100%;
-    }
+    .flagstripe{ height: 12px; display:flex; width:100%; }
     .flagstripe span{ flex:1 }
     .flagstripe .g{ background: var(--z-green); }
     .flagstripe .r{ background: var(--z-red); }
@@ -96,10 +90,7 @@
       gap:12px;
       padding: 12px 14px;
     }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:900; letter-spacing:.2px;
-    }
+    .brand{ display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.2px; }
     .logo{
       width:42px;height:42px;border-radius:16px;
       display:grid;place-items:center;
@@ -107,13 +98,7 @@
       border:1px solid rgba(255,255,255,.12);
       box-shadow: 0 10px 40px rgba(6,182,212,.14);
     }
-    .brand small{
-      display:block;
-      color: var(--muted);
-      font-weight:700;
-      margin-top:2px;
-      font-size: 12px;
-    }
+    .brand small{ display:block; color: var(--muted); font-weight:700; margin-top:2px; font-size: 12px; }
 
     .pill{
       display:flex; align-items:center; gap:8px;
@@ -132,7 +117,6 @@
       box-shadow: 0 0 0 6px rgba(34,197,94,.18);
     }
 
-    /* Layout */
     .hero{
       display:grid;
       grid-template-columns: 1.05fr .95fr;
@@ -150,9 +134,8 @@
       position: relative;
     }
 
-    /* BANNER with president watermark UNDER headline */
     .heroBanner{
-      min-height: 490px;
+      min-height: 520px;
       padding: 18px;
       display:flex;
       flex-direction: column;
@@ -167,7 +150,7 @@
         linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.72) 72%);
     }
 
-    /* President photo as watermark (transparent under headline) */
+    /* President watermark behind text */
     .heroBanner::before{
       content:"";
       position:absolute;
@@ -177,23 +160,22 @@
         url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg/1600px-President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg");
       background-size: cover;
       background-position: center 18%;
-      opacity: .17;
+      opacity: .16;
       filter: contrast(1.12) saturate(1.05);
       z-index: 0;
     }
 
-    /* Dark overlay to keep text readable */
     .heroBanner::after{
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.82) 78%);
+      background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.84) 78%);
       z-index: 1;
     }
 
     .heroBanner *{ position:relative; z-index: 2; }
 
-    /* Visible president card (NOT transparent) inside banner */
+    /* ✅ Bigger President Card */
     .presCard{
       position:absolute;
       top: 16px;
@@ -201,32 +183,52 @@
       z-index: 3;
       display:flex;
       align-items:center;
-      gap:10px;
-      padding: 10px 12px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.14);
+      gap:14px;
+      padding: 14px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.16);
       background: rgba(0,0,0,.30);
       backdrop-filter: blur(10px);
       box-shadow: 0 18px 70px rgba(0,0,0,.35);
-      max-width: 340px;
+      max-width: 520px;
     }
     .presPhoto{
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
+      width: 96px;      /* أكبر */
+      height: 96px;     /* أكبر */
+      border-radius: 22px;
       overflow:hidden;
-      border: 1px solid rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.22);
       flex: 0 0 auto;
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
     }
     .presPhoto img{
       width:100%;
       height:100%;
       object-fit: cover;
       display:block;
-      filter: saturate(1.03) contrast(1.05);
+      filter: saturate(1.05) contrast(1.06);
+      transform: scale(1.03);
     }
-    .presInfo b{ display:block; font-size: 13px; font-weight: 900; }
-    .presInfo span{ display:block; font-size: 12px; color: rgba(238,243,255,.72); font-weight: 700; }
+    .presInfo b{
+      display:block;
+      font-size: 16px;
+      font-weight: 1000;
+      letter-spacing: .2px;
+    }
+    .presInfo span{
+      display:block;
+      font-size: 13px;
+      color: rgba(238,243,255,.78);
+      font-weight: 800;
+      margin-top: 4px;
+    }
+    .presInfo small{
+      display:block;
+      font-size: 12px;
+      color: rgba(238,243,255,.62);
+      font-weight: 700;
+      margin-top: 6px;
+    }
 
     .heroBadges{
       display:flex; flex-wrap:wrap; gap:10px;
@@ -241,6 +243,7 @@
       backdrop-filter: blur(10px);
       font-size: 12px;
       color: rgba(238,243,255,.88);
+      font-weight: 800;
     }
     .spark{
       width: 18px; height: 18px; border-radius: 7px;
@@ -252,22 +255,18 @@
       margin:0;
       font-size: 42px;
       line-height: 1.08;
-      font-weight: 900;
+      font-weight: 1000;
       max-width: 28ch;
       text-shadow: 0 18px 60px rgba(0,0,0,.65);
     }
     .subhead{
       margin: 6px 0 0;
       color: rgba(238,243,255,.82);
-      font-weight: 700;
+      font-weight: 800;
       max-width: 74ch;
     }
 
-    /* Countdown */
-    .countdown{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top: 12px;
-    }
+    .countdown{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px; }
     .timebox{
       min-width: 96px;
       padding: 10px 12px;
@@ -277,29 +276,13 @@
       backdrop-filter: blur(12px);
       text-align:center;
     }
-    .num{ font-size: 26px; font-weight: 900; line-height: 1; }
+    .num{ font-size: 26px; font-weight: 1000; line-height: 1; }
     .lbl{ font-size: 12px; color: rgba(238,243,255,.75); margin-top: 4px; }
 
-    /* Form */
-    .formWrap{
-      padding: 18px;
-      display:flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .formTitle{
-      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
-    }
-    .formTitle h2{
-      margin:0;
-      font-size: 22px;
-      font-weight: 900;
-    }
-    .formTitle p{
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-weight: 700;
-    }
+    .formWrap{ padding: 18px; display:flex; flex-direction: column; gap: 12px; }
+    .formTitle{ display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+    .formTitle h2{ margin:0; font-size: 22px; font-weight: 1000; }
+    .formTitle p{ margin: 6px 0 0; color: var(--muted); font-weight: 800; }
 
     .glass{
       border: 1px solid var(--stroke);
@@ -309,7 +292,7 @@
     }
 
     .field{ display:flex; flex-direction:column; gap: 7px; }
-    label{ font-weight: 900; font-size: 13px; letter-spacing:.2px; }
+    label{ font-weight: 1000; font-size: 13px; letter-spacing:.2px; }
     input{
       padding: 13px 12px;
       border-radius: 14px;
@@ -320,10 +303,7 @@
       font-size: 15px;
     }
     input::placeholder{ color: rgba(238,243,255,.45); }
-    input:focus{
-      border-color: rgba(6,182,212,.60);
-      box-shadow: 0 0 0 4px rgba(6,182,212,.16);
-    }
+    input:focus{ border-color: rgba(6,182,212,.60); box-shadow: 0 0 0 4px rgba(6,182,212,.16); }
 
     .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
@@ -332,7 +312,7 @@
       border: none;
       border-radius: 16px;
       padding: 13px 14px;
-      font-weight: 900;
+      font-weight: 1000;
       font-size: 16px;
       cursor:pointer;
       color: #071016;
@@ -349,22 +329,15 @@
       border-radius: 16px;
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.05);
-      font-weight: 800;
+      font-weight: 900;
       margin-top: 10px;
     }
     .status.ok{ border-color: rgba(34,197,94,.35); }
     .status.err{ border-color: rgba(255,77,77,.40); color: #ffd1d1; }
 
-    .fineprint{
-      font-size: 12px;
-      color: rgba(238,243,255,.62);
-      line-height: 1.5;
-    }
+    .fineprint{ font-size: 12px; color: rgba(238,243,255,.62); line-height: 1.5; font-weight:700; }
 
-    .trustRow{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top: 10px;
-    }
+    .trustRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
     .trust{
       flex: 1 1 140px;
       padding: 10px 12px;
@@ -372,20 +345,13 @@
       border:1px solid var(--stroke);
       background: rgba(255,255,255,.04);
     }
-    .trust b{ display:block; font-size: 13px; }
-    .trust span{ display:block; margin-top:2px; font-size: 12px; color: var(--muted); }
+    .trust b{ display:block; font-size: 13px; font-weight:1000; }
+    .trust span{ display:block; margin-top:2px; font-size: 12px; color: var(--muted); font-weight:800; }
 
-    /* Gallery */
-    .section{
-      margin-top: 18px;
-      padding: 18px;
-    }
-    .sectionHead{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
-      margin-bottom: 12px;
-    }
-    .section h3{ margin:0; font-size: 22px; font-weight: 900; }
-    .section p{ margin: 6px 0 0; color: var(--muted); font-weight: 700; }
+    .section{ margin-top: 18px; padding: 18px; }
+    .sectionHead{ display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom: 12px; }
+    .section h3{ margin:0; font-size: 22px; font-weight: 1000; }
+    .section p{ margin: 6px 0 0; color: var(--muted); font-weight: 800; }
 
     .gallery{
       display:grid;
@@ -398,22 +364,11 @@
       overflow:hidden;
       border: 1px solid var(--stroke);
       background: rgba(255,255,255,.03);
-      position: relative;
       min-height: 150px;
-      transform: translateY(0);
       transition: transform .22s ease, border-color .22s ease;
     }
-    .gcard:hover{
-      transform: translateY(-3px);
-      border-color: rgba(255,255,255,.22);
-    }
-    .gcard img{
-      width:100%;
-      height: 170px;
-      object-fit: cover;
-      display:block;
-      filter: saturate(1.06) contrast(1.03);
-    }
+    .gcard:hover{ transform: translateY(-3px); border-color: rgba(255,255,255,.22); }
+    .gcard img{ width:100%; height: 170px; object-fit: cover; display:block; filter: saturate(1.06) contrast(1.03); }
     .gmeta{
       padding: 10px 12px 12px;
       display:flex; align-items:center; justify-content:space-between; gap:10px;
@@ -427,7 +382,7 @@
       border: 1px solid var(--stroke);
       background: rgba(255,255,255,.03);
       color: rgba(238,243,255,.82);
-      font-weight: 800;
+      font-weight: 900;
     }
     .miniDot{
       width:8px;height:8px;border-radius:50%;
@@ -435,7 +390,6 @@
       box-shadow: 0 0 0 6px rgba(124,58,237,.12);
     }
 
-    /* Footer */
     footer{
       padding: 26px 18px 90px;
       text-align:center;
@@ -443,7 +397,6 @@
       font-size: 12px;
     }
 
-    /* Mobile sticky CTA */
     .stickyCTA{
       position: fixed;
       left: 0; right: 0; bottom: 0;
@@ -463,13 +416,13 @@
       justify-content:space-between;
       padding: 0 6px;
     }
-    .stickyText b{ display:block; font-size: 13px; }
-    .stickyText span{ display:block; font-size: 12px; color: rgba(238,243,255,.68); }
+    .stickyText b{ display:block; font-size: 13px; font-weight:1000; }
+    .stickyText span{ display:block; font-size: 12px; color: rgba(238,243,255,.68); font-weight:800; }
     .stickyBtn{
       border:none;
       border-radius: 16px;
       padding: 12px 14px;
-      font-weight: 900;
+      font-weight: 1000;
       cursor:pointer;
       color:#071016;
       background: linear-gradient(90deg, rgba(245,158,11,1), rgba(34,197,94,1));
@@ -477,7 +430,6 @@
       white-space:nowrap;
     }
 
-    /* Responsive */
     @media (max-width: 1020px){
       .hero{ grid-template-columns: 1fr; }
       .headline{ font-size: 34px; }
@@ -490,9 +442,9 @@
       .headline{ font-size: 30px; }
       .timebox{ min-width: 88px; }
       .gcard{ grid-column: span 12; }
+      .presPhoto{ width: 86px; height: 86px; }
     }
 
-    /* Entrance animation */
     .reveal{ opacity:0; transform: translateY(10px); animation: in .7s ease forwards; }
     .reveal.delay1{ animation-delay: .08s; }
     .reveal.delay2{ animation-delay: .16s; }
@@ -525,18 +477,17 @@
       </div>
     </div>
 
-    <!-- HERO -->
     <div class="hero">
       <!-- Banner -->
       <div class="panel heroBanner reveal delay1">
-        <!-- Visible president card -->
         <div class="presCard" aria-label="President of Zambia">
           <div class="presPhoto">
-            <img alt="President of Zambia" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg/512px-President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg">
+            <img alt="President of Zambia" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg/640px-President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg">
           </div>
           <div class="presInfo">
             <b>President of Zambia</b>
             <span>Hakainde Hichilema</span>
+            <small>Official portrait (public source)</small>
           </div>
         </div>
 
@@ -605,7 +556,7 @@
       </div>
     </div>
 
-    <!-- Scholarships Gallery (REAL scholarship-like images) -->
+    <!-- Gallery -->
     <div class="panel section reveal delay3" id="gallery">
       <div class="sectionHead">
         <div>
@@ -616,66 +567,20 @@
       </div>
 
       <div class="gallery">
-        <!-- Scholarship / grants focused images -->
-        <div class="gcard">
-          <img alt="Scholarship Application" src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1400&q=80">
-          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Application</span><span class="tag">Step-by-step</span></div>
-        </div>
+        <div class="gcard"><img alt="Scholarship Application" src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Application</span><span class="tag">Step-by-step</span></div></div>
+        <div class="gcard"><img alt="Acceptance Letter" src="https://images.unsplash.com/photo-1521790361543-f645cf042ec4?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Admission</span><span class="tag">Letter</span></div></div>
+        <div class="gcard"><img alt="Graduation" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Graduation</span><span class="tag">Success</span></div></div>
+        <div class="gcard"><img alt="Books and Study" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Study</span><span class="tag">Books</span></div></div>
 
-        <div class="gcard">
-          <img alt="Acceptance Letter" src="https://images.unsplash.com/photo-1521790361543-f645cf042ec4?auto=format&fit=crop&w=1400&q=80">
-          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Admission</span><span class="tag">Letter</span></div>
-        </div>
+        <div class="gcard"><img alt="University Students" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Students</span><span class="tag">Campus</span></div></div>
+        <div class="gcard"><img alt="Tuition Funding" src="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Funding</span><span class="tag">Tuition</span></div></div>
+        <div class="gcard"><img alt="Online Study" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Online</span><span class="tag">Flexible</span></div></div>
+        <div class="gcard"><img alt="Exam Preparation" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Preparation</span><span class="tag">Skills</span></div></div>
 
-        <div class="gcard">
-          <img alt="Graduation" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1400&q=80">
-          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Graduation</span><span class="tag">Success</span></div>
-        </div>
-
-        <div class="gcard">
-          <img alt="Scholarship Support" src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1400&q=80">
-          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Support</span><span class="tag">Merit</span></div>
-        </div>
-
-        <div class="gcard">
-          <img alt="Books and Study" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1400&q=80">
-          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Study</span><span class="tag">Books</span></div>
-        </div>
-
-        <div class="gcard">
-          <img alt="University Students" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=80">
-          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Students</span><span class="tag">Campus</span></div>
-        </div>
-
-        <div class="gcard">
-          <img alt="Tuition Funding" src="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1400&q=80">
-          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Funding</span><span class="tag">Tuition</span></div>
-        </div>
-
-        <div class="gcard">
-          <img alt="Online Study" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=80">
-          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Online</span><span class="tag">Flexible</span></div>
-        </div>
-
-        <div class="gcard">
-          <img alt="Scholarship Interview" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80">
-          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Interview</span><span class="tag">Guidance</span></div>
-        </div>
-
-        <div class="gcard">
-          <img alt="Exam Preparation" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1400&q=80">
-          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Preparation</span><span class="tag">Skills</span></div>
-        </div>
-
-        <div class="gcard">
-          <img alt="University Building" src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1400&q=80">
-          <div class="gmeta"><span class="tag"><span class="miniDot"></span> University</span><span class="tag">Access</span></div>
-        </div>
-
-        <div class="gcard">
-          <img alt="Scholarship Opportunity" src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1400&q=80">
-          <div class="gmeta"><span class="tag"><span class="miniDot"></span> Opportunity</span><span class="tag">2026</span></div>
-        </div>
+        <div class="gcard"><img alt="University Building" src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> University</span><span class="tag">Access</span></div></div>
+        <div class="gcard"><img alt="Scholarship Opportunity" src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Opportunity</span><span class="tag">2026</span></div></div>
+        <div class="gcard"><img alt="Mentorship" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Mentorship</span><span class="tag">Guidance</span></div></div>
+        <div class="gcard"><img alt="Scholarship Support" src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Support</span><span class="tag">Merit</span></div></div>
       </div>
     </div>
 
@@ -686,7 +591,6 @@
     </footer>
   </div>
 
-  <!-- Mobile sticky CTA -->
   <div class="stickyCTA">
     <div class="stickyInner">
       <div class="stickyText">
@@ -701,23 +605,22 @@
   </div>
 
   <script>
-    // ====== SETTINGS ======
-    // Change countdown end time here (Lusaka typically UTC+2)
+    // Countdown end time (Lusaka typically UTC+2) - change anytime
     const END_AT = "2026-03-01T23:59:00+02:00";
 
     // CPA redirect URL
     const CPA_URL = "https://iconics.adsleads1.store/?utm_medium=45cb5b04ee2dd3d524876ef99d99f52ba4436745&utm_campaign=menhaza";
 
-    // Append captured fields as params (only if your network accepts)
+    // Append captured fields to CPA URL (only if accepted by network)
     const APPEND_PARAMS_TO_CPA = true;
 
-    // ====== DATE UI ======
+    // Dates
     const today = new Date();
     const todayEl = document.getElementById("today");
     if (todayEl) todayEl.textContent = today.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"2-digit"});
     document.getElementById("year").textContent = today.getFullYear();
 
-    // ====== COUNTDOWN ======
+    // Countdown
     const el = (id) => document.getElementById(id);
     const pad = (n) => String(n).padStart(2, "0");
 
@@ -747,7 +650,7 @@
     tick();
     setInterval(tick, 1000);
 
-    // ====== REDIRECT HELPERS ======
+    // Redirect helper
     function buildRedirectUrl(baseUrl, paramsObj){
       try{
         const u = new URL(baseUrl);
@@ -766,7 +669,7 @@
       }
     }
 
-    // ====== FORM SUBMIT ======
+    // Form submit
     const form = document.getElementById("leadForm");
     const okMsg = document.getElementById("okMsg");
     const errMsg = document.getElementById("errMsg");
