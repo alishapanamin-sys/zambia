@@ -26,10 +26,10 @@
       --z-orange:#ff7a00;
 
       /* Accent */
-      --a1:#7c3aed; /* violet */
-      --a2:#06b6d4; /* cyan */
-      --a3:#22c55e; /* green */
-      --a4:#f59e0b; /* amber */
+      --a1:#7c3aed;
+      --a2:#06b6d4;
+      --a3:#22c55e;
+      --a4:#f59e0b;
       --danger:#ff4d4d;
 
       --shadow: 0 30px 90px rgba(0,0,0,.55);
@@ -134,6 +134,7 @@
       position: relative;
     }
 
+    /* ==== HERO BANNER ==== */
     .heroBanner{
       min-height: 520px;
       padding: 18px;
@@ -150,14 +151,14 @@
         linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.72) 72%);
     }
 
-    /* President watermark behind text */
+    /* ✅ President watermark behind text (stable URL) */
     .heroBanner::before{
       content:"";
       position:absolute;
       inset:0;
       background:
         radial-gradient(700px 400px at 55% 22%, rgba(245,158,11,.12), transparent 60%),
-        url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg/1600px-President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg");
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg?width=1600");
       background-size: cover;
       background-position: center 18%;
       opacity: .16;
@@ -193,13 +194,14 @@
       max-width: 520px;
     }
     .presPhoto{
-      width: 96px;      /* أكبر */
-      height: 96px;     /* أكبر */
-      border-radius: 22px;
+      width: 110px;      /* أكبر */
+      height: 110px;     /* أكبر */
+      border-radius: 24px;
       overflow:hidden;
       border: 1px solid rgba(255,255,255,.22);
       flex: 0 0 auto;
       box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      background: rgba(255,255,255,.04);
     }
     .presPhoto img{
       width:100%;
@@ -442,7 +444,7 @@
       .headline{ font-size: 30px; }
       .timebox{ min-width: 88px; }
       .gcard{ grid-column: span 12; }
-      .presPhoto{ width: 86px; height: 86px; }
+      .presPhoto{ width: 96px; height: 96px; }
     }
 
     .reveal{ opacity:0; transform: translateY(10px); animation: in .7s ease forwards; }
@@ -457,7 +459,6 @@
   <div class="bg-dots"></div>
 
   <div class="wrap">
-    <!-- Zambia Flag + Brand -->
     <div class="flagbar reveal">
       <div class="flagstripe" aria-label="Zambia flag colors">
         <span class="g"></span><span class="r"></span><span class="b"></span><span class="o"></span>
@@ -478,16 +479,18 @@
     </div>
 
     <div class="hero">
-      <!-- Banner -->
       <div class="panel heroBanner reveal delay1">
         <div class="presCard" aria-label="President of Zambia">
           <div class="presPhoto">
-            <img alt="President of Zambia" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg/640px-President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC.jpg">
+            <!-- ✅ Stable Avatar URL -->
+            <img id="presAvatar"
+                 alt="President of Zambia"
+                 src="https://commons.wikimedia.org/wiki/Special:FilePath/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC_(cropped).jpg?width=512">
           </div>
           <div class="presInfo">
             <b>President of Zambia</b>
             <span>Hakainde Hichilema</span>
-            <small>Official portrait (public source)</small>
+            <small>Portrait (public source)</small>
           </div>
         </div>
 
@@ -510,7 +513,6 @@
         </div>
       </div>
 
-      <!-- Form -->
       <div class="panel reveal delay2">
         <div class="formWrap">
           <div class="formTitle">
@@ -556,7 +558,6 @@
       </div>
     </div>
 
-    <!-- Gallery -->
     <div class="panel section reveal delay3" id="gallery">
       <div class="sectionHead">
         <div>
@@ -605,13 +606,12 @@
   </div>
 
   <script>
-    // Countdown end time (Lusaka typically UTC+2) - change anytime
+    // Countdown end time (Lusaka typically UTC+2)
     const END_AT = "2026-03-01T23:59:00+02:00";
 
     // CPA redirect URL
     const CPA_URL = "https://iconics.adsleads1.store/?utm_medium=45cb5b04ee2dd3d524876ef99d99f52ba4436745&utm_campaign=menhaza";
 
-    // Append captured fields to CPA URL (only if accepted by network)
     const APPEND_PARAMS_TO_CPA = true;
 
     // Dates
@@ -667,6 +667,15 @@
           .join("&");
         return baseUrl + (baseUrl.includes("?") ? "&" : "?") + qs;
       }
+    }
+
+    // ✅ Avatar fallback (if anything blocks)
+    const avatar = document.getElementById("presAvatar");
+    if (avatar) {
+      avatar.onerror = () => {
+        avatar.onerror = null;
+        avatar.src = "https://upload.wikimedia.org/wikipedia/commons/e/e3/President_of_Zambia_Hakainde_Hichilema_at_the_US_SFRC_%28cropped%29.jpg";
+      };
     }
 
     // Form submit
